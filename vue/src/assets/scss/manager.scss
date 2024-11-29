@@ -1,0 +1,181 @@
+//Variables for colors
+$background-light: #f8f8ff;
+$background-primary: #0777c7;
+$background-white: #fff;
+$background-hover: #cde9ff;
+$background-active: #bbe0ff;
+$table-header-background: #f8f8f8;
+$text-primary: #fff;
+$text-secondary: #666;
+$text-active: #0777c7;
+$box-shadow-light: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+$box-shadow-heavy: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+
+
+.manager-container {
+  background-color: $background-light;
+  min-height: 100vh;
+}
+
+.manager-header {
+  display: flex;
+  background-color: $background-primary;
+
+  &-left {
+    width: 200px;
+    height: 60px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 35px;
+      height: 35px;
+    }
+
+    .title {
+      flex: 1;
+      margin-left: 5px;
+      font-size: 20px;
+      font-weight: bold;
+      color: $background-white;
+    }
+  }
+
+  &-center {
+    flex: 1;
+    width: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  &-right {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .avatar {
+      display: flex;
+      align-items: center;
+      padding-right: 10px;
+      color: $background-white;
+      cursor: default;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.manager-main {
+  display: flex;
+
+  &-left {
+    width: 200px;
+    min-height: calc(100vh - 60px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &-right {
+    flex: 1;
+    width: 0;
+    padding: 10px;
+
+    .search,
+    .operation {
+      padding: 10px;
+      background-color: $background-white;
+      border-radius: 5px;
+      box-shadow: $box-shadow-light;
+    }
+
+    .table {
+      margin-top: 5px;
+      padding: 15px 10px;
+      background-color: rgba(205, 233, 255, 0.69);
+      border-radius: 5px;
+      box-shadow: $box-shadow-heavy;
+
+      .pagination {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+.card {
+  padding: 20px;
+  background-color:$background-white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 $box-shadow-light;
+}
+
+/* ElementUI */
+.el-menu {
+  width: 200px;
+  height: 100%;
+  background-color: $background-white;
+
+  .el-submenu__title {
+    color: #666;
+    height: 50px;
+    line-height: 50px;
+
+    &:hover {
+      background-color: $background-hover !important;
+    }
+  }
+
+  .el-menu-item {
+    color: $text-secondary;
+    height: 50px;
+    line-height: 50px;
+    background-color:$background-white !important; /* 必须加上这个背景色，否则鼠标离开会出现白色 */
+
+    &:hover {
+      background-color: $background-hover !important;
+      color: $background-primary;
+    }
+
+    &.is-active {
+      background-color: $text-active !important;
+      color: $background-primary;
+      border-right: 3px solid rgba(255, 255, 255, 0.63);
+    }
+  }
+
+  &--inline .el-menu-item {
+    padding-left: 50px !important;
+  }
+
+  .is-active {
+    color: $background-primary !important;
+  }
+}
+
+.el-breadcrumb {
+  margin-left: 10px;
+
+  &__inner {
+    color: $background-white !important;
+  }
+
+  &__separator {
+    color: $background-white;
+  }
+}
+
+.el-dropdown-menu {
+  margin-top: 20px !important;
+}
+
+th.el-table__cell {
+  background-color: $table-header-background8 !important;
+  color: $text-secondary;
+}

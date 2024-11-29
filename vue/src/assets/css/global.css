@@ -1,0 +1,16 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Nerko+One&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Parkinsans:wght@300..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-size: 14px;
+    background-color: #efebeb;
+    font-family: Jost;
+}
+a {
+    text-decoration: none;
+}
