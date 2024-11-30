@@ -35,11 +35,11 @@
               <el-table-column prop="username" label="To"></el-table-column>
               <el-table-column prop="useraddress" label="Address"></el-table-column>
               <el-table-column prop="phone" label="Contact"></el-table-column>
-              <el-table-column prop="status" label="Track"></el-table-column>
+              <el-table-column prop="status" width="100" label="Track"></el-table-column>
               <el-table-column label="Operation" align="center" width="180">
                 <template v-slot="scope">
-                  <el-button size="mini" type="primary" v-if="scope.row.status === 'Pending Shipment'" plain @click="updateStatus(scope.row, 'Completed')">Confirm Receipt</el-button>
-                  <el-button size="mini" type="primary" v-if="scope.row.status === 'Completed'" plain @click="addComment(scope.row)">Reviews</el-button>
+                  <el-button size="mini" type="primary" v-if="scope.row.status === 'Pending Receipt'" plain @click="updateStatus(scope.row, 'Completed')">Received</el-button>
+                  <el-button size="mini" type="primary" v-if="scope.row.status === 'Completed'" plain @click="addComment(scope.row,'Reviewed')">Review</el-button>
                   <el-button size="mini" type="danger" plain @click="del(scope.row.id)">Delete</el-button>
                 </template>
               </el-table-column>

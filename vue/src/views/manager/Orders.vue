@@ -35,10 +35,10 @@
         <el-table-column prop="username" label="To" show-overflow-tooltip></el-table-column>
         <el-table-column prop="useraddress" label="Address" show-overflow-tooltip></el-table-column>
         <el-table-column prop="phone" label="Phone" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="status" label="Status" show-overflow-tooltip></el-table-column>
-        <el-table-column label="Operation" width="180" align="center">
+        <el-table-column prop="status" width="140" label="Status" show-overflow-tooltip></el-table-column>
+        <el-table-column label="Operation" width="300" align="center">
           <template v-slot="scope">
-            <el-button plain type="primary" size="mini" v-if="scope.row.status === 'Pending Shipment'" @click="updateStatus(scope.row, 'Pending Receipt')">Ship</el-button>
+            <el-button plain type="primary" size="mini" v-if="scope.row.status === 'Pending Shipment'" @click="updateStatus(scope.row, 'Pending Receipt')">Send</el-button>
             <el-button plain type="danger" size="mini" @click=del(scope.row.id)>Delete</el-button>
           </template>
         </el-table-column>

@@ -22,7 +22,7 @@
         <el-table-column prop="goodsName" label="Product" show-overflow-tooltip></el-table-column>
         <el-table-column label="Operation" width="180" align="center">
           <template v-slot="scope">
-            <el-button plain type="primary" size="mini" v-if="scope.row.status === 'Waiting Delivery'" @click="updateStatus(scope.row, 'Waiting Receiving')">Deliver</el-button>
+            <el-button plain type="primary" size="mini" v-if="scope.row.status === 'Pending Shipment'" @click="updateStatus(scope.row, 'Waiting Receiving')">Deliver</el-button>
             <el-button plain type="danger" size="mini" @click=del(scope.row.id)>Delete</el-button>
           </template>
         </el-table-column>
