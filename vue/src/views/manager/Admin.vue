@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="search">
-      <el-input placeholder="请输入账号查询" style="width: 200px" v-model="username"></el-input>
-      <el-button type="info" plain style="margin-left: 10px" @click="load(1)">查询</el-button>
-      <el-button type="warning" plain style="margin-left: 10px" @click="reset">重置</el-button>
+      <el-input placeholder="Please enter the account..." style="width: 200px" v-model="username"></el-input>
+      <el-button type="info" plain style="margin-left: 10px" @click="load(1)">Query</el-button>
+      <el-button type="warning" plain style="margin-left: 10px" @click="reset">Reset</el-button>
     </div>
 
     <div class="operation">
-      <el-button type="primary" plain @click="handleAdd">新增</el-button>
-      <el-button type="danger" plain @click="delBatch">批量删除</el-button>
+      <el-button type="primary" plain @click="handleAdd">Add</el-button>
+      <el-button type="danger" plain @click="delBatch">Batch Deletion</el-button>
     </div>
 
     <div class="table">
@@ -53,7 +53,7 @@
     <el-dialog title="Administrator" :visible.sync="fromVisible" width="40%" :close-on-click-modal="false" destroy-on-close>
       <el-form :model="form" label-width="100px" style="padding-right: 50px" :rules="rules" ref="formRef">
         <el-form-item label="Username" prop="username">
-          <el-input v-model="form.username" placeholder="用户名"></el-input>
+          <el-input v-model="form.username" placeholder="Username"></el-input>
         </el-form-item>
         <el-form-item label="Name" prop="name">
           <el-input v-model="form.name" placeholder="Name"></el-input>

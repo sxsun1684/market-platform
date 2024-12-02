@@ -1,4 +1,4 @@
-USE xm_shopping_manager;
+USE market_system;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -99,7 +99,7 @@ VALUES (3, 'perfume', '123456', 'Perfume House', 'http://localhost:9090/files/16
         'Founded in 2010, a large-scale perfume wholesaler under the Momo Group. Promotes a "convenient and affordable" lifestyle, improving consumer quality of life. As of July 2023, it has spread across 31 provinces, 220+ cities, with nearly 2000 stores.',
         'Under Review');
 INSERT INTO `business`
-VALUES (4, 'computer', '123456', 'Qihang Computer Accessories', 'http://localhost:9090/files/1699025860605-3.jpg',
+VALUES (4, 'computer', '123456', 'Computer Accessories', 'http://localhost:9090/files/1699025860605-3.jpg',
         'BUSINESS', '18800007777', 'computer@xm.com',
         'Founded in 2010, a large wholesaler under Lulu Group. Promotes a "convenient and affordable" lifestyle, improving consumer quality of life. As of July 2023, it has spread across 31 provinces, 220+ cities, with nearly 2000 stores.',
         'Under Review');

@@ -1,7 +1,7 @@
 package com.example.common.enums;
 
 public enum StatusEnum {
-    CHECKING("Under Reviewed"),
+    CHECKING("Under Review"),
     CHECK_OK("Reviewed"),
     CHECK_NO("Review Failed"),
     ;
