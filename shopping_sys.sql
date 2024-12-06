@@ -92,7 +92,7 @@ INSERT INTO `business`
 VALUES (2, 'meshe', '123456', 'ifashion', 'http://localhost:9090/files/1699023227734-avatar.png', 'BUSINESS',
         '18899990000', 'meshe@xm.com',
         'MsShe (Founded in 2010, defined as "European and American minimalist luxury style, dedicated to spreading the confident and elegant beauty of women.")',
-        'Approved');
+        'Reviewed');
 INSERT INTO `business`
 VALUES (3, 'perfume', '123456', 'Perfume House', 'http://localhost:9090/files/1699025808382-1.jpg', 'BUSINESS',
         '18877776666', 'perfume@xm.com',
