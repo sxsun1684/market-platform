@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * 基础前端接口
+ * Basic front-end interface
  */
 @RestController
 public class WebController {
@@ -28,11 +28,11 @@ public class WebController {
 
     @GetMapping("/")
     public Result hello() {
-        return Result.success("访问成功");
+        return Result.success("Access successful");
     }
 
     /**
-     * 登录
+     * Login
      */
     @PostMapping("/login")
     public Result login(@RequestBody Account account) {
@@ -53,7 +53,7 @@ public class WebController {
     }
 
     /**
-     * 注册
+     * Register
      */
     @PostMapping("/register")
     public Result register(@RequestBody Account account) {
@@ -74,7 +74,7 @@ public class WebController {
     }
 
     /**
-     * 修改密码
+     * Update password
      */
     @PutMapping("/updatePassword")
     public Result updatePassword(@RequestBody Account account) {

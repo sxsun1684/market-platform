@@ -6,35 +6,56 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * 操作business相关数据接口
-*/
+ * Mapper interface for performing operations related to Business data.
+ */
 public interface BusinessMapper {
 
     /**
-      * 新增
-    */
+     * Inserts a new Business entity into the database.
+     *
+     * @param business the Business entity to be inserted
+     * @return the number of rows affected by the insert operation
+     */
     int insert(Business business);
 
     /**
-      * 删除
-    */
+     * Deletes a Business entity from the database by its ID.
+     *
+     * @param id the ID of the Business entity to be deleted
+     * @return the number of rows affected by the delete operation
+     */
     int deleteById(Integer id);
 
     /**
-      * 修改
-    */
+     * Updates an existing Business entity in the database by its ID.
+     *
+     * @param business the Business entity containing updated information
+     * @return the number of rows affected by the update operation
+     */
     int updateById(Business business);
 
     /**
-      * 根据ID查询
-    */
+     * Retrieves a Business entity from the database by its ID.
+     *
+     * @param id the ID of the Business entity to be retrieved
+     * @return the Business entity with the specified ID, or null if not found
+     */
     Business selectById(Integer id);
 
     /**
-      * 查询所有
-    */
+     * Retrieves a list of all Business entities that match the criteria specified in the given Business entity.
+     *
+     * @param business a Business entity with fields used as filter criteria
+     * @return a list of Business entities that match the specified criteria
+     */
     List<Business> selectAll(Business business);
 
+    /**
+     * Retrieves a Business entity from the database by its username.
+     *
+     * @param username the username of the Business entity to be retrieved
+     * @return the Business entity with the specified username, or null if not found
+     */
     @Select("select * from business where username = #{username}")
     Business selectByUsername(String username);
 }

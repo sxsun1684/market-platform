@@ -4,31 +4,48 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Order information sheet
+ * Represents the Order information entity.
  */
 public class Orders implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /** ID */
+    /** Order ID */
     private Integer id;
+    /** User ID associated with the order */
     private Integer userId;
+    /** Business ID associated with the order */
     private Integer businessId;
+    /** Goods ID associated with the order */
     private Integer goodsId;
+    /** Unique identifier for the order */
     private String orderId;
+    /** Address ID associated with the order */
     private Integer addressId;
+    /** Quantity of goods ordered */
     private Integer num;
+    /** Total price of the order */
     private Double price;
+    /** Status of the order */
     private String status;
 
+    /** List of cart items related to the order */
     private List<Cart> cartData;
 
+    /** Name of the business associated with the order */
     private String businessName;
+    /** Name of the goods associated with the order */
     private String goodsName;
+    /** Image of the goods */
     private String goodsImg;
+    /** Unit of the goods */
     private String goodsUnit;
+    /** Price per unit of the goods */
     private Double goodsPrice;
+    /** Username of the user who placed the order */
     private String username;
+    /** Address of the user who placed the order */
     private String useraddress;
+    /** Phone number of the user who placed the order */
     private String phone;
 
     public Orders() {

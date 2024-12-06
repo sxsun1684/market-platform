@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 评论业务处理
+ * Comment business processing
  **/
 @Service
 public class CommentService {
@@ -26,7 +26,7 @@ public class CommentService {
     private CommentMapper commentMapper;
 
     /**
-     * 新增
+     * Add new comment
      */
     public void add(Comment comment) {
         comment.setTime(DateUtil.now());
@@ -34,14 +34,14 @@ public class CommentService {
     }
 
     /**
-     * 删除
+     * Delete by ID
      */
     public void deleteById(Integer id) {
         commentMapper.deleteById(id);
     }
 
     /**
-     * 批量删除
+     * Batch delete
      */
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
@@ -50,28 +50,28 @@ public class CommentService {
     }
 
     /**
-     * 修改
+     * Update by ID
      */
     public void updateById(Comment comment) {
         commentMapper.updateById(comment);
     }
 
     /**
-     * 根据ID查询
+     * Select by ID
      */
     public Comment selectById(Integer id) {
         return commentMapper.selectById(id);
     }
 
     /**
-     * 查询所有
+     * Select all comments
      */
     public List<Comment> selectAll(Comment comment) {
         return commentMapper.selectAll(comment);
     }
 
     /**
-     * 分页查询
+     * Paginated query
      */
     public PageInfo<Comment> selectPage(Comment comment, Integer pageNum, Integer pageSize) {
         Account currentUser = TokenUtils.getCurrentUser();
@@ -86,6 +86,9 @@ public class CommentService {
         return PageInfo.of(list);
     }
 
+    /**
+     * Select comments by goods ID
+     */
     public List<Comment> selectByGoodsId(Integer id) {
         return commentMapper.selectByGoodsId(id);
     }

@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 商家前端操作接口
+ * Merchant Frontend Operation Interface
  **/
 @RestController
 @RequestMapping("/user")
@@ -20,7 +20,7 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 新增
+     * Add a new user
      */
     @PostMapping("/add")
     public Result add(@RequestBody User user) {
@@ -29,7 +29,7 @@ public class UserController {
     }
 
     /**
-     * 删除
+     * Delete a user by ID
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     /**
-     * 批量删除
+     * Batch delete users
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     /**
-     * 修改
+     * Update a user by ID
      */
     @PutMapping("/update")
     public Result updateById(@RequestBody User user) {
@@ -56,7 +56,7 @@ public class UserController {
     }
 
     /**
-     * 根据ID查询
+     * Query a user by ID
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
@@ -65,16 +65,16 @@ public class UserController {
     }
 
     /**
-     * 查询所有
+     * Query all users
      */
     @GetMapping("/selectAll")
-    public Result selectAll(User user ) {
+    public Result selectAll(User user) {
         List<User> list = userService.selectAll(user);
         return Result.success(list);
     }
 
     /**
-     * 分页查询
+     * Paginated query
      */
     @GetMapping("/selectPage")
     public Result selectPage(User user,

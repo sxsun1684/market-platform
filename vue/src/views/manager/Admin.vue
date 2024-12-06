@@ -30,8 +30,8 @@
         <el-table-column prop="role" label="Role"></el-table-column>
         <el-table-column label="Operation" align="center" width="180">
           <template v-slot="scope">
-            <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
+            <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">Edit</el-button>
+            <el-button size="mini" type="danger" plain @click="del(scope.row.id)">Delete</el-button>
           </template>
         </el-table-column>
       </el-table>

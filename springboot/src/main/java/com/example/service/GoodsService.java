@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 /**
- * 商品信息表业务处理
+ * Goods information business processing
  **/
 @Service
 public class GoodsService {
@@ -38,7 +38,7 @@ public class GoodsService {
     private OrdersMapper ordersMapper;
 
     /**
-     * 新增
+     * Add new goods
      */
     public void add(Goods goods) {
         Account currentUser = TokenUtils.getCurrentUser();
@@ -49,14 +49,14 @@ public class GoodsService {
     }
 
     /**
-     * 删除
+     * Delete by ID
      */
     public void deleteById(Integer id) {
         goodsMapper.deleteById(id);
     }
 
     /**
-     * 批量删除
+     * Batch delete
      */
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
@@ -65,28 +65,28 @@ public class GoodsService {
     }
 
     /**
-     * 修改
+     * Update by ID
      */
     public void updateById(Goods goods) {
         goodsMapper.updateById(goods);
     }
 
     /**
-     * 根据ID查询
+     * Select by ID
      */
     public Goods selectById(Integer id) {
         return goodsMapper.selectById(id);
     }
 
     /**
-     * 查询所有
+     * Select all goods
      */
     public List<Goods> selectAll(Goods goods) {
         return goodsMapper.selectAll(goods);
     }
 
     /**
-     * 分页查询
+     * Paginated query
      */
     public PageInfo<Goods> selectPage(Goods goods, Integer pageNum, Integer pageSize) {
         Account currentUser = TokenUtils.getCurrentUser();
@@ -117,56 +117,56 @@ public class GoodsService {
     public List<Goods> recommend() {
         Account currentUser = TokenUtils.getCurrentUser();
         if (ObjectUtil.isEmpty(currentUser)) {
-            // 没有用户登录
+            // No user logged in
             return new ArrayList<>();
         }
-        // 用户的哪些行为可以认为他跟商品产生了关系？收藏、加入购物车、下单、评论
-        // 1. 获取所有的收藏信息
+        // What user actions can be considered as having a relationship with goods? Collecting, adding to cart, placing an order, commenting
+        // 1. Get all collection information
         List<Collect> allCollects = collectMapper.selectAll(null);
-        // 2. 获取所有的购物车信息
+        // 2. Get all cart information
         List<Cart> allCarts = cartMapper.selectAll(null);
-        // 3. 获取所有的订单信息
+        // 3. Get all order information
         List<Orders> allOrders = ordersMapper.selectAllOKOrders();
-        // 4. 获取所有的评论信息
+        // 4. Get all comment information
         List<Comment> allComments = commentMapper.selectAll(null);
-        // 5. 获取所有的用户信息
+        // 5. Get all user information
         List<User> allUsers = userMapper.selectAll(null);
-        // 6. 获取所有的商品信息
+        // 6. Get all goods information
         List<Goods> allGoods = goodsMapper.selectAll(null);
 
-        // 定义一个存储每个商品和每个用户关系的List
+        // Define a List to store the relationship between each product and each user
         List<RelateDTO> data = new ArrayList<>();
-        // 定义一个存储最后返回给前端的商品List
+        // Define a List to store the final goods that will be returned to the front end
         List<Goods> recommendResult;
 
-        // 创建一个栅栏，等待所有的异步处理都结束后，再往下走
+        // Create a countdown latch to wait for all asynchronous processing to finish before proceeding
         CountDownLatch countDownLatch = new CountDownLatch(allGoods.size() * allUsers.size());
-        // 创建一个线程池
+        // Create a thread pool
         ExecutorService threadPool = Executors.newCachedThreadPool();
 
-        // 开始计算每个商品和每个用户之间的关系数据
+        // Start calculating the relationship data between each product and each user
         for (Goods goods : allGoods) {
             Integer goodsId = goods.getId();
             for (User user : allUsers) {
                 threadPool.execute(() -> {
                     Integer userId = user.getId();
                     int index = 1;
-                    // 1. 判断该用户有没有收藏该商品，收藏的权重我们给 1
+                    // 1. Check if the user has collected the product, assigning a weight of 1 to collection
                     Optional<Collect> collectOptional = allCollects.stream().filter(x -> x.getGoodsId().equals(goodsId) && x.getUserId().equals(userId)).findFirst();
                     if (collectOptional.isPresent()) {
                         index += 1;
                     }
-                    // 2. 判断该用户有没有给该商品加入购物车，加入购物车的权重我们给 2
+                    // 2. Check if the user has added the product to their cart, assigning a weight of 2 to adding to cart
                     Optional<Cart> cartOptional = allCarts.stream().filter(x -> x.getGoodsId().equals(goodsId) && x.getUserId().equals(userId)).findFirst();
                     if (cartOptional.isPresent()) {
                         index += 2;
                     }
-                    // 3. 判断该用户有没有对该商品下过单（已完成的订单），订单的权重我们给 3
+                    // 3. Check if the user has placed an order for the product (completed orders), assigning a weight of 3 to orders
                     Optional<Orders> ordersOptional = allOrders.stream().filter(x -> x.getGoodsId().equals(goodsId) && x.getUserId().equals(userId)).findFirst();
                     if (ordersOptional.isPresent()) {
                         index += 3;
                     }
-                    // 4. 判断该用户有没有对该商品评论过，评论的权重我们给 2
+                    // 4. Check if the user has commented on the product, assigning a weight of 2 to comments
                     Optional<Comment> commentOptional = allComments.stream().filter(x -> x.getGoodsId().equals(goodsId) && x.getUserId().equals(userId)).findFirst();
                     if (commentOptional.isPresent()) {
                         index += 2;
@@ -186,24 +186,24 @@ public class GoodsService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            // 数据准备结束后，就把这些数据一起喂给这个推荐算法
+            // After data preparation ends, feed all the data into the recommendation algorithm
             List<Integer> goodsIds = UserCF.recommend(currentUser.getId(), data);
-            // 把商品id转换成商品
+            // Convert goods IDs to goods
             recommendResult = goodsIds.stream().map(goodsId -> allGoods.stream()
-                    .filter(x -> x.getId().equals(goodsId)).findFirst().orElse(null))
-                    .limit(10).collect(Collectors.toList());
+                                                                       .filter(x -> x.getId().equals(goodsId)).findFirst().orElse(null))
+                                      .limit(10).collect(Collectors.toList());
         }
 
 
-//        if (CollectionUtil.isEmpty(recommendResult)) {
-//            // 随机给它推荐10个
-//            return getRandomGoods(10);
-//        }
-//        if (recommendResult.size() < 10) {
-//            int num = 10 - recommendResult.size();
-//            List<Goods> list = getRandomGoods(num);
-//            result.addAll(list);
-//        }
+        //        if (CollectionUtil.isEmpty(recommendResult)) {
+        //            // Randomly recommend 10 products
+        //            return getRandomGoods(10);
+        //        }
+        //        if (recommendResult.size() < 10) {
+        //            int num = 10 - recommendResult.size();
+        //            List<Goods> list = getRandomGoods(num);
+        //            result.addAll(list);
+        //        }
         return recommendResult;
     }
 

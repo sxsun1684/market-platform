@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 商家业务处理
+ * Business service handling
  **/
 @Service
 public class BusinessService {
@@ -28,7 +28,7 @@ public class BusinessService {
     private BusinessMapper businessMapper;
 
     /**
-     * 新增
+     * Add a new business
      */
     public void add(Business business) {
         Business dbBusiness = businessMapper.selectByUsername(business.getUsername());
@@ -49,14 +49,14 @@ public class BusinessService {
     }
 
     /**
-     * 删除
+     * Delete by ID
      */
     public void deleteById(Integer id) {
         businessMapper.deleteById(id);
     }
 
     /**
-     * 批量删除
+     * Batch delete
      */
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
@@ -65,28 +65,28 @@ public class BusinessService {
     }
 
     /**
-     * 修改
+     * Update by ID
      */
     public void updateById(Business business) {
         businessMapper.updateById(business);
     }
 
     /**
-     * 根据ID查询
+     * Select by ID
      */
     public Business selectById(Integer id) {
         return businessMapper.selectById(id);
     }
 
     /**
-     * 查询所有
+     * Select all businesses
      */
     public List<Business> selectAll(Business business) {
         return businessMapper.selectAll(business);
     }
 
     /**
-     * 分页查询
+     * Paginated query
      */
     public PageInfo<Business> selectPage(Business business, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -95,7 +95,7 @@ public class BusinessService {
     }
 
     /**
-     * 登录
+     * Login
      */
     public Account login(Account account) {
         Account dbBusiness = businessMapper.selectByUsername(account.getUsername());
@@ -105,7 +105,7 @@ public class BusinessService {
         if (!account.getPassword().equals(dbBusiness.getPassword())) {
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
-        // 生成token
+        // Generate token
         String tokenData = dbBusiness.getId() + "-" + RoleEnum.BUSINESS.name();
         String token = TokenUtils.createToken(tokenData, dbBusiness.getPassword());
         dbBusiness.setToken(token);
@@ -113,7 +113,7 @@ public class BusinessService {
     }
 
     /**
-     * 注册
+     * Register a new business account
      */
     public void register(Account account) {
         Business business = new Business();
@@ -122,7 +122,7 @@ public class BusinessService {
     }
 
     /**
-     * 修改密码
+     * Update password
      */
     public void updatePassword(Account account) {
         Business dbBusiness = businessMapper.selectByUsername(account.getUsername());

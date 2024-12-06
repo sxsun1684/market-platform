@@ -27,7 +27,7 @@ public class AdminService {
     private AdminMapper adminMapper;
 
     /**
-     * ADD
+     * Add a new administrator
      */
     public void add(Admin admin) {
         Admin dbAdmin = adminMapper.selectByUsername(admin.getUsername());
@@ -45,14 +45,14 @@ public class AdminService {
     }
 
     /**
-     * Delete
+     * Delete administrator by ID
      */
     public void deleteById(Integer id) {
         adminMapper.deleteById(id);
     }
 
     /**
-     * Batch Deletion
+     * Batch deletion of administrators
      */
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
@@ -61,28 +61,28 @@ public class AdminService {
     }
 
     /**
-     * 修改
+     * Update administrator by ID
      */
     public void updateById(Admin admin) {
         adminMapper.updateById(admin);
     }
 
     /**
-     * 根据ID查询
+     * Query administrator by ID
      */
     public Admin selectById(Integer id) {
         return adminMapper.selectById(id);
     }
 
     /**
-     * 查询所有
+     * Query all administrators
      */
     public List<Admin> selectAll(Admin admin) {
         return adminMapper.selectAll(admin);
     }
 
     /**
-     * 分页查询
+     * Paginated query of administrators
      */
     public PageInfo<Admin> selectPage(Admin admin, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -91,7 +91,7 @@ public class AdminService {
     }
 
     /**
-     * 登录
+     * Administrator login
      */
     public Account login(Account account) {
         Account dbAdmin = adminMapper.selectByUsername(account.getUsername());
@@ -101,7 +101,7 @@ public class AdminService {
         if (!account.getPassword().equals(dbAdmin.getPassword())) {
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
-        // 生成token
+        // Generate token
         String tokenData = dbAdmin.getId() + "-" + RoleEnum.ADMIN.name();
         String token = TokenUtils.createToken(tokenData, dbAdmin.getPassword());
         dbAdmin.setToken(token);
@@ -109,7 +109,7 @@ public class AdminService {
     }
 
     /**
-     * 注册
+     * Administrator registration
      */
     public void register(Account account) {
         Admin admin = new Admin();
@@ -118,7 +118,7 @@ public class AdminService {
     }
 
     /**
-     * 修改密码
+     * Update administrator password
      */
     public void updatePassword(Account account) {
         Admin dbAdmin = adminMapper.selectByUsername(account.getUsername());

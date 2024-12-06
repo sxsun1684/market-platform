@@ -10,7 +10,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 分类信息表业务处理
+ * Business logic for the Type entity.
+ * Handles operations related to type information.
  **/
 @Service
 public class TypeService {
@@ -19,21 +20,21 @@ public class TypeService {
     private TypeMapper typeMapper;
 
     /**
-     * 新增
+     * Add a new type.
      */
     public void add(Type type) {
         typeMapper.insert(type);
     }
 
     /**
-     * 删除
+     * Delete a type by ID.
      */
     public void deleteById(Integer id) {
         typeMapper.deleteById(id);
     }
 
     /**
-     * 批量删除
+     * Delete multiple types in batch.
      */
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
@@ -42,28 +43,33 @@ public class TypeService {
     }
 
     /**
-     * 修改
+     * Update type information by ID.
      */
     public void updateById(Type type) {
         typeMapper.updateById(type);
     }
 
     /**
-     * 根据ID查询
+     * Find a type by ID.
      */
     public Type selectById(Integer id) {
         return typeMapper.selectById(id);
     }
 
     /**
-     * 查询所有
+     * Find all types that match the given criteria.
      */
     public List<Type> selectAll(Type type) {
         return typeMapper.selectAll(type);
     }
 
     /**
-     * 分页查询
+     * Paginated query for types.
+     *
+     * @param type The criteria for querying types.
+     * @param pageNum The page number to retrieve.
+     * @param pageSize The number of records per page.
+     * @return A PageInfo object containing the result.
      */
     public PageInfo<Type> selectPage(Type type, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);

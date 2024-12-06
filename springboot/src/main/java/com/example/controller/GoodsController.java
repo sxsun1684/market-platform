@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 分类信息表前端操作接口
+ * Front-end operation interface for Goods Category Information
  **/
 @RestController
 @RequestMapping("/goods")
@@ -20,7 +20,7 @@ public class GoodsController {
     private GoodsService goodsService;
 
     /**
-     * 新增
+     * Add a new goods entry
      */
     @PostMapping("/add")
     public Result add(@RequestBody Goods goods) {
@@ -29,7 +29,7 @@ public class GoodsController {
     }
 
     /**
-     * 删除
+     * Delete a goods entry by ID
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
@@ -38,7 +38,7 @@ public class GoodsController {
     }
 
     /**
-     * 批量删除
+     * Batch delete goods entries
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
@@ -47,7 +47,7 @@ public class GoodsController {
     }
 
     /**
-     * 修改
+     * Update a goods entry by ID
      */
     @PutMapping("/update")
     public Result updateById(@RequestBody Goods goods) {
@@ -56,7 +56,7 @@ public class GoodsController {
     }
 
     /**
-     * 根据ID查询
+     * Retrieve a goods entry by ID
      */
     @GetMapping("/selectById")
     public Result selectById(@RequestParam Integer id) {
@@ -71,26 +71,35 @@ public class GoodsController {
     }
 
     /**
-     * 查询所有
+     * Retrieve all goods entries
      */
     @GetMapping("/selectAll")
-    public Result selectAll(Goods goods ) {
+    public Result selectAll(Goods goods) {
         List<Goods> list = goodsService.selectAll(goods);
         return Result.success(list);
     }
 
+    /**
+     * Retrieve goods entries by Type ID
+     */
     @GetMapping("/selectByTypeId")
     public Result selectByTypeId(@RequestParam Integer id) {
         List<Goods> list = goodsService.selectByTypeId(id);
         return Result.success(list);
     }
 
+    /**
+     * Retrieve goods entries by name
+     */
     @GetMapping("/selectByName")
     public Result selectByName(@RequestParam String name) {
         List<Goods> list = goodsService.selectByName(name);
         return Result.success(list);
     }
 
+    /**
+     * Retrieve goods entries by Business ID
+     */
     @GetMapping("/selectByBusinessId")
     public Result selectByBusinessId(@RequestParam Integer id) {
         List<Goods> list = goodsService.selectByBusinessId(id);
@@ -104,7 +113,7 @@ public class GoodsController {
     }
 
     /**
-     * 分页查询
+     * Retrieve goods entries with pagination
      */
     @GetMapping("/selectPage")
     public Result selectPage(Goods goods,

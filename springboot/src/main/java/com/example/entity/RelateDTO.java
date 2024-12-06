@@ -8,6 +8,14 @@ public class RelateDTO {
     /** Index */
     private Integer index;
 
+    /**
+     * Constructs a new RelateDTO with the specified user ID, goods ID, and index.
+     *
+     * @param userId the ID of the user
+     * @param goodsId the ID of the goods
+     * @param index the index value
+     */
+
     public RelateDTO(Integer useId, Integer goodsId, Integer index) {
         this.useId = useId;
         this.goodsId = goodsId;

@@ -13,15 +13,15 @@
 
     <div class="operation">
       <!-- Button to publish a product -->
-      <el-button type="primary" plain @click="handleAdd">Publish Product</el-button>
+      <el-button type="primary" plain @click="handleAdd">Post Product</el-button>
       <!-- Button to delete products in bulk -->
-      <el-button type="danger" plain @click="delBatch">Batch Delete</el-button>
+      <el-button type="danger" plain @click="delBatch">Batch Deletion</el-button>
     </div>
 
     <div class="table">
       <el-table :data="tableData" stripe @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center"></el-table-column>
-        <el-table-column prop="id" label="序号" width="80" align="center" sortable></el-table-column>
+        <el-table-column prop="id" label="Serial ID" width="80" align="center" sortable></el-table-column>
         <el-table-column label="Picture">
 
           <template v-slot="scope">
@@ -31,8 +31,8 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="name" label="Product Name" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="description" label="Product Description">
+        <el-table-column prop="name" label="Name" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="description" label="Description">
           <template slot-scope="scope">
             <!-- Button to view the product description -->
             <el-button type="success" @click="viewEditor(scope.row.description)">Click to View</el-button>
@@ -40,9 +40,9 @@
         </el-table-column>
         <el-table-column prop="price" label="Price" show-overflow-tooltip></el-table-column>
         <el-table-column prop="unit" label="Quantity" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="typeName" label="Product Category" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="businessName" label="Merchant" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="count" label="Product Sales" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="typeName" label="Category" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="businessName" label="Business" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="count" label="Sales" show-overflow-tooltip></el-table-column>
         <el-table-column label="Operation" width="180" align="center">
           <template v-slot="scope">
             <!-- Button to edit the product -->
@@ -71,7 +71,7 @@
     <el-dialog title="Information" :visible.sync="fromVisible" width="40%" :close-on-click-modal="false"
                destroy-on-close @close="cancel">
       <el-form label-width="100px" style="padding-right: 50px" :model="form" :rules="rules" ref="formRef">
-        <el-form-item label="Product Main Image">
+        <el-form-item label="Picture">
           <!-- Upload component for uploading product main image -->
           <el-upload
               class="avatar-uploader"

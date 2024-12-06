@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 收藏业务处理
+ * Collection business processing
  **/
 @Service
 public class CollectService {
@@ -25,10 +25,10 @@ public class CollectService {
     private CollectMapper collectMapper;
 
     /**
-     * 新增
+     * Add new collection
      */
     public void add(Collect collect) {
-        // 判断一下该用户有没有收藏过该商品，如果有，就要提示用户不能重复收藏
+        // Check if the user has already collected this item. If yes, prompt the user that duplicate collections are not allowed.
         Collect dbCollect = collectMapper.selectByUserIdAndGoodsId(collect.getUserId(), collect.getGoodsId());
         if (ObjectUtil.isNotEmpty(dbCollect)) {
             throw new CustomException(ResultCodeEnum.COLLECT_ALREADY_ERROR);
@@ -37,14 +37,14 @@ public class CollectService {
     }
 
     /**
-     * 删除
+     * Delete by ID
      */
     public void deleteById(Integer id) {
         collectMapper.deleteById(id);
     }
 
     /**
-     * 批量删除
+     * Batch delete
      */
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
@@ -53,28 +53,28 @@ public class CollectService {
     }
 
     /**
-     * 修改
+     * Update by ID
      */
     public void updateById(Collect collect) {
         collectMapper.updateById(collect);
     }
 
     /**
-     * 根据ID查询
+     * Query by ID
      */
     public Collect selectById(Integer id) {
         return collectMapper.selectById(id);
     }
 
     /**
-     * 查询所有
+     * Query all collections
      */
     public List<Collect> selectAll(Collect collect) {
         return collectMapper.selectAll(collect);
     }
 
     /**
-     * 分页查询
+     * Paginated query
      */
     public PageInfo<Collect> selectPage(Collect collect, Integer pageNum, Integer pageSize) {
         Account currentUser = TokenUtils.getCurrentUser();

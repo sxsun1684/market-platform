@@ -28,7 +28,7 @@
         <el-form-item label="Intro" prop="description">
           <el-input type="textarea" v-model="user.description" placeholder="Introduction"></el-input>
         </el-form-item>
-        <el-form-item label="Audit Status" prop="status">
+        <el-form-item label="Status" prop="status">
           <el-input v-model="user.status" placeholder="Audit Status" disabled></el-input>
         </el-form-item>
         <div style="text-align: center; margin-bottom: 20px">

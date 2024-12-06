@@ -136,7 +136,7 @@ $box-shadow-heavy: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     color: $text-secondary;
     height: 50px;
     line-height: 50px;
-    background-color:$background-white !important; /* 必须加上这个背景色，否则鼠标离开会出现白色 */
+    background-color:$background-white !important;
 
     &:hover {
       background-color: $background-hover !important;

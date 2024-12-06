@@ -3,7 +3,7 @@
     <div class="search">
       <el-input placeholder="Please enter the account" style="width: 200px" v-model="username"></el-input>
       <el-button type="info" plain style="margin-left: 10px" @click="load(1)">Query</el-button>
-      <el-button type="warning" plain style="margin-left: 10px" @click="reset">重置</el-button>
+      <el-button type="warning" plain style="margin-left: 10px" @click="reset">Reset</el-button>
     </div>
 
     <div class="operation">
@@ -57,7 +57,7 @@
         <el-form-item label="Username" prop="username">
           <el-input v-model="form.username" placeholder="Username"></el-input>
         </el-form-item>
-        <el-form-item label="Shop Name" prop="name">
+        <el-form-item label="Store" prop="name">
           <el-input v-model="form.name" placeholder="Shop name"></el-input>
         </el-form-item>
         <el-form-item label="Phone" prop="phone">
@@ -77,11 +77,11 @@
             <el-button type="primary">Upload Avatar</el-button>
           </el-upload>
         </el-form-item>
-        <el-form-item label="Shop Intro" prop="description">
+        <el-form-item label="Store" prop="description">
           <el-input v-model="form.description" placeholder="Shop Intro"></el-input>
         </el-form-item>
-        <el-form-item label="Audit status" prop="status">
-          <el-select v-model="form.status" placeholder="Please select" style="width: 100%">
+        <el-form-item label="Status" prop="status">
+          <el-select v-model="form.status" placeholder="Please select..." style="width: 100%">
             <el-option label="Under Review" value="Under Review"></el-option>
             <el-option label="Reviewed" value="Reviewed"></el-option>
             <el-option label="Review Failed" value="Review Failed"></el-option>
@@ -114,7 +114,7 @@ export default {
       user: JSON.parse(localStorage.getItem('xm-user') || '{}'),
       rules: {
         username: [
-          {required: true, message: 'Please enter account', trigger: 'blur'},
+          {required: true, message: 'Please enter account...', trigger: 'blur'},
         ]
       },
       ids: []

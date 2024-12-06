@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 分类信息表前端操作接口
+ * Front-end controller interface for managing category information
  **/
 @RestController
 @RequestMapping("/type")
@@ -20,7 +20,7 @@ public class TypeController {
     private TypeService typeService;
 
     /**
-     * 新增
+     * Add new category
      */
     @PostMapping("/add")
     public Result add(@RequestBody Type type) {
@@ -29,7 +29,7 @@ public class TypeController {
     }
 
     /**
-     * 删除
+     * Delete category by ID
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
@@ -38,7 +38,7 @@ public class TypeController {
     }
 
     /**
-     * 批量删除
+     * Batch delete categories
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
@@ -47,7 +47,7 @@ public class TypeController {
     }
 
     /**
-     * 修改
+     * Update category by ID
      */
     @PutMapping("/update")
     public Result updateById(@RequestBody Type type) {
@@ -56,7 +56,7 @@ public class TypeController {
     }
 
     /**
-     * 根据ID查询
+     * Get category by ID
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
@@ -65,16 +65,16 @@ public class TypeController {
     }
 
     /**
-     * 查询所有
+     * Get all categories
      */
     @GetMapping("/selectAll")
-    public Result selectAll(Type type ) {
+    public Result selectAll(Type type) {
         List<Type> list = typeService.selectAll(type);
         return Result.success(list);
     }
 
     /**
-     * 分页查询
+     * Paginated query of categories
      */
     @GetMapping("/selectPage")
     public Result selectPage(Type type,

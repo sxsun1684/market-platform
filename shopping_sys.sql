@@ -26,13 +26,13 @@ CREATE TABLE `address`
 -- Records of address
 -- ----------------------------
 INSERT INTO `address`
-VALUES (1, 5, 'Jack Smith', 'No. 888, Pudong New Area, Shanghai', '1234567890');
+VALUES (1, 5, 'Alice1', 'No. 888, Pudong New Area, Shanghai', '1234567890');
 INSERT INTO `address`
-VALUES (4, 5, 'Alice Wang', 'No. 888, Hefei, Anhui Province', '1234567891');
+VALUES (4, 5, 'Alice2', 'No. 888, Hefei, Anhui Province', '1234567891');
 INSERT INTO `address`
-VALUES (5, 5, 'Wenzhi Li', '600 Wanping South Road, Xuhui District, Shanghai', '1234567892');
+VALUES (5, 5, 'Alice3', '600 Wanping South Road, Xuhui District, Shanghai', '1234567892');
 INSERT INTO `address`
-VALUES (6, 9, 'Cezhi Zhou', '22335 Foothill Blvd, Hayward, California, USA', '1234567893');
+VALUES (6, 9, 'Alice4', '22335 Foothill Blvd, Hayward, California, USA', '1234567893');
 
 -- ----------------------------
 -- Table structure for admin
@@ -268,13 +268,13 @@ CREATE TABLE `notice`
 -- ----------------------------
 INSERT INTO `notice`
 VALUES (1, 'The system is officially online today, internal testing begins',
-        'The system is officially online today, internal testing begins', '2023-09-05', 'admin');
+        'The system is officially online today, internal testing begins', '2024-11-05', 'admin');
 INSERT INTO `notice`
 VALUES (2, 'All features are completed and available for use', 'All features are completed and available for use',
-        '2023-09-05', 'admin');
+        '2024-11-05', 'admin');
 INSERT INTO `notice`
 VALUES (3, 'The weather is great today, a good time to go out and have fun',
-        'The weather is great today, a good time to go out and have fun', '2023-09-05', 'admin');
+        'The weather is great today, a good time to go out and have fun', '2024-11-05', 'admin');
 
 
 -- ----------------------------
@@ -335,51 +335,51 @@ CREATE TABLE `type`
 -- ----------------------------
 INSERT INTO `type`
 VALUES (1, 'Books/Audio-Visual', 'This is Books and Audio-Visual',
-        'http://localhost:9090/files/1699015316548-图书音像.png');
+        'http://localhost:9090/files/books.png');
 INSERT INTO `type`
-VALUES (2, 'Cookware/Storage/Pets', 'This is Cookware / Storage / Pets',
-        'http://localhost:9090/files/1699015562438-居家.png');
+VALUES (2, 'Rent/Household', 'This is Rent/Household',
+        'http://localhost:9090/files/house.png');
 INSERT INTO `type`
 VALUES (3, 'Medicines/Health Products', 'This is Medicines / Health Products',
-        'http://localhost:9090/files/1699015585629-医药保健.png');
+        'http://localhost:9090/files/medication.png');
 INSERT INTO `type`
 VALUES (4, 'Home Textiles/Decor/Flowers', 'This is Home Textiles / Decor / Flowers',
-        'http://localhost:9090/files/1699015602362-家纺家饰.png');
+        'http://localhost:9090/files/deco.png');
 INSERT INTO `type`
 VALUES (5, 'Automobiles/Accessories/Supplies', 'This is Automobiles / Accessories / Supplies',
-        'http://localhost:9090/files/1699015621841-汽车配件.png');
+        'http://localhost:9090/files/car.png');
 INSERT INTO `type`
 VALUES (6, 'Furniture/Lighting/Bathroom', 'This is Furniture / Lighting / Bathroom',
-        'http://localhost:9090/files/1699015637219-家具建材.png');
+        'http://localhost:9090/files/furniture.png');
 INSERT INTO `type`
 VALUES (7, 'Household Appliances/Daily Necessities', 'This is Household Appliances / Daily Necessities',
-        'http://localhost:9090/files/1699015658084-家用电器.png');
+        'http://localhost:9090/files/application.png');
 INSERT INTO `type`
-VALUES (8, 'Fruits/Fresh Food', 'This is Fruits / Fresh Food', 'http://localhost:9090/files/1699015679164-喵鲜生.png');
+VALUES (8, 'Fruits/Fresh Food', 'This is Fruits / Fresh Food', 'http://localhost:9090/files/fruit.png');
 INSERT INTO `type`
 VALUES (9, 'Snacks/Tea & Alcohol/Food', 'This is Snacks/Tea & Alcohol/Food',
-        'http://localhost:9090/files/1699015694567-食品.png');
+        'http://localhost:9090/files/food.png');
 INSERT INTO `type`
-VALUES (10, 'Maternity & Baby/Toys', 'This is Maternity & Baby / Toys',
-        'http://localhost:9090/files/1699015709389-母婴玩具.png');
+VALUES (10, 'Toys', 'This is Toys',
+        'http://localhost:9090/files/toy.png');
 INSERT INTO `type`
 VALUES (11, 'Digital Devices/Accessories', 'This is Mobile Phones / Digital Devices / Accessories',
-        'http://localhost:9090/files/1699015723293-数码手机.png');
+        'http://localhost:9090/files/iPhones.png');
 INSERT INTO `type`
 VALUES (12, 'Computers/Office Accessories', 'This is Computers / Office Electronics / Accessories',
-        'http://localhost:9090/files/1699015735715-电脑.png');
+        'http://localhost:9090/files/computers.png');
 INSERT INTO `type`
 VALUES (13, 'Jewelry/Skincare/Accessories', 'This is Jewelry / Skincare / Accessories',
-        'http://localhost:9090/files/1699015765623-珠宝饰品.png');
+        'http://localhost:9090/files/jewelry.png');
 INSERT INTO `type`
-VALUES (14, 'Women\'s/Men\'s Shoes/Bags', 'This is Women\'s Shoes / Men\'s Shoes / Bags',
-        'http://localhost:9090/files/1699015794478-鞋_箱包.png');
+VALUES (14, 'stationary/bags', 'This is stationary/bags',
+        'http://localhost:9090/files/stationary.png');
 INSERT INTO `type`
 VALUES (15, 'Men\'s Clothing/Sports & Outdoors', 'This is Men\'s Clothing / Sports & Outdoors',
-        'http://localhost:9090/files/1699015810103-男装.png');
+        'http://localhost:9090/files/men-clothing.png');
 INSERT INTO `type`
 VALUES (16, 'Stylish Women\'s Clothing', 'This is Stylish Women\'s Clothing / Underwear',
-        'http://localhost:9090/files/1699015824719-女装内衣.png');
+        'http://localhost:9090/files/women-clothing.png');
 
 -- ----------------------------
 -- Table structure for user
@@ -406,10 +406,10 @@ CREATE TABLE `user`
 -- Records of user
 -- ----------------------------
 INSERT INTO `user`
-VALUES (5, 'Alice Wang', '123456', 'Alice Wang', 'http://localhost:9090/files/user1.png', 'USER',
-        '18811112222', 'zhangsan@xm.com');
-INSERT INTO `user`
-VALUES (9, 'Daniel Chan', '123456', 'Daniel Chan', 'http://localhost:9090/files/1699254328253-corgi.jpeg', 'USER', '18866660000',
-        'lisi@xm.com');
+VALUES (5, 'Alice', '123456', 'Alice', 'http://localhost:9090/files/user1.png', 'USER',
+        '18811112222', 'ali@bm.com');
+# INSERT INTO `user`
+# VALUES (9, 'Sam', '123456', 'Sam', 'http://localhost:9090/files/user2.png', 'USER', '18866660000',
+#         'sam@bm.com');
 
 SET FOREIGN_KEY_CHECKS = 1;

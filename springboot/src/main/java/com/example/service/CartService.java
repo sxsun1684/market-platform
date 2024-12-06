@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 收藏业务处理
+ * Cart Service - Business Logic for Cart Operations
  **/
 @Service
 public class CartService {
@@ -23,10 +23,10 @@ public class CartService {
     private CartMapper cartMapper;
 
     /**
-     * 新增
+     * Add a new item to the cart
      */
     public void add(Cart cart) {
-        // 判断该用户对该商品有没有加入过购物车，如果加入过，那么只要更新一下该条记录的num（+1）
+        // Check if the user has already added the product to the cart. If so, just update the record's quantity (increment by 1)
         Cart dbCart = cartMapper.selectByUserIdAndGoodsId(cart.getUserId(), cart.getGoodsId());
         if (ObjectUtil.isNotEmpty(dbCart)) {
             dbCart.setNum(dbCart.getNum() + 1);
@@ -37,14 +37,14 @@ public class CartService {
     }
 
     /**
-     * 删除
+     * Delete an item from the cart by ID
      */
     public void deleteById(Integer id) {
         cartMapper.deleteById(id);
     }
 
     /**
-     * 批量删除
+     * Batch delete items from the cart
      */
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
@@ -53,28 +53,28 @@ public class CartService {
     }
 
     /**
-     * 修改
+     * Update an item in the cart by ID
      */
     public void updateById(Cart cart) {
         cartMapper.updateById(cart);
     }
 
     /**
-     * 根据ID查询
+     * Select an item from the cart by ID
      */
     public Cart selectById(Integer id) {
         return cartMapper.selectById(id);
     }
 
     /**
-     * 查询所有
+     * Select all items in the cart
      */
     public List<Cart> selectAll(Cart cart) {
         return cartMapper.selectAll(cart);
     }
 
     /**
-     * 分页查询
+     * Paginated query of cart items
      */
     public PageInfo<Cart> selectPage(Cart cart, Integer pageNum, Integer pageSize) {
         Account currentUser = TokenUtils.getCurrentUser();

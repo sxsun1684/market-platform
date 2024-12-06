@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 商家业务处理
+ * Merchant business processing
  **/
 @Service
 public class UserService {
@@ -28,7 +28,7 @@ public class UserService {
     private UserMapper userMapper;
 
     /**
-     * 新增
+     * Add new user
      */
     public void add(User user) {
         User dbUser = userMapper.selectByUsername(user.getUsername());
@@ -46,14 +46,14 @@ public class UserService {
     }
 
     /**
-     * 删除
+     * Delete by ID
      */
     public void deleteById(Integer id) {
         userMapper.deleteById(id);
     }
 
     /**
-     * 批量删除
+     * Batch delete
      */
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
@@ -62,28 +62,28 @@ public class UserService {
     }
 
     /**
-     * 修改
+     * Update by ID
      */
     public void updateById(User user) {
         userMapper.updateById(user);
     }
 
     /**
-     * 根据ID查询
+     * Query by ID
      */
     public User selectById(Integer id) {
         return userMapper.selectById(id);
     }
 
     /**
-     * 查询所有
+     * Query all users
      */
     public List<User> selectAll(User user) {
         return userMapper.selectAll(user);
     }
 
     /**
-     * 分页查询
+     * Paginated query
      */
     public PageInfo<User> selectPage(User user, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -92,7 +92,7 @@ public class UserService {
     }
 
     /**
-     * 登录
+     * Login
      */
     public Account login(Account account) {
         Account dbUser = userMapper.selectByUsername(account.getUsername());
@@ -102,7 +102,7 @@ public class UserService {
         if (!account.getPassword().equals(dbUser.getPassword())) {
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
-        // 生成token
+        // Generate token
         String tokenData = dbUser.getId() + "-" + RoleEnum.USER.name();
         String token = TokenUtils.createToken(tokenData, dbUser.getPassword());
         dbUser.setToken(token);
@@ -110,7 +110,7 @@ public class UserService {
     }
 
     /**
-     * 注册
+     * Register
      */
     public void register(Account account) {
         User user = new User();
@@ -119,7 +119,7 @@ public class UserService {
     }
 
     /**
-     * 修改密码
+     * Update password
      */
     public void updatePassword(Account account) {
         User dbUser = userMapper.selectByUsername(account.getUsername());
@@ -132,5 +132,4 @@ public class UserService {
         dbUser.setPassword(account.getNewPassword());
         userMapper.updateById(dbUser);
     }
-
 }
