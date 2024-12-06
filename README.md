@@ -17,13 +17,13 @@ The website is based on a multi-merchant structure, allowing different merchants
 - Manage reviews on products from different merchants
 - Publish system-wide announcements
 
-### Business (Student Seller)
+### Business: Student Seller
 - Register, Login, Personal Dashboard, Change Password
 - Publish product information
 - Manage orders within their store
 - Manage users and reviews within their store
 
-### User (Student Buyer)
+### User: Student Buyer
 - Register, Login, Personal Dashboard, Change Password
 - Browse all products on the platform, including search and category-based browsing
 - View recommended products, powered by a collaborative filtering algorithm
@@ -37,4 +37,4 @@ The website is based on a multi-merchant structure, allowing different merchants
 - **Backend**: Java 17+, Spring Boot
 - **Frontend**: Node.js 16+, Vue
 - **Database**: MySQL, navicat
-- **Tools**: Maven or Gradle, npm or yarn
+- **Tools**: Maven, npm or yarn
