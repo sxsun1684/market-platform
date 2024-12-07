@@ -17,7 +17,7 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button style="width: 100%; background-color: #AF3939FF; border-color: #AF3939FF; color: white" @click="login">Login</el-button>
+          <el-button style="width: 100%; background-color: #0777c7; border-color: #bbe0ff; color: white" @click="login">Login</el-button>
         </el-form-item>
         <div style="display: flex; align-items: center">
           <div style="flex: 1"></div>

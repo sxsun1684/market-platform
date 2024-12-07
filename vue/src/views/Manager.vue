@@ -29,9 +29,9 @@
       </div>
     </div>
 
-    <!--  主体  -->
+    <!--  body  -->
     <div class="manager-main">
-      <!--  侧边栏  -->
+      <!--  side bar  -->
       <div class="manager-main-left">
         <el-menu :default-openeds="['info', 'user']" router style="border: none" :default-active="$route.path">
           <el-menu-item index="/home">

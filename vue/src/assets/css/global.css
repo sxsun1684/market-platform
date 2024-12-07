@@ -10,6 +10,7 @@ body {
     font-size: 14px;
     background-color: #efebeb;
     font-family: Jost;
+    /*cursor: url('@/assets/imgs/pointer.png'), auto;*/
 }
 a {
     text-decoration: none;

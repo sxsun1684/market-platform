@@ -59,8 +59,8 @@ CREATE TABLE `admin`
 -- Records of admin
 -- ----------------------------
 INSERT INTO `admin`
-VALUES (1, 'admin', '123456', 'Administrator', 'http://localhost:9090/files/1697438073596-avatar.png', 'ADMIN',
-        '13677889922', 'admin@xm.com');
+VALUES (1, 'admin', '123456', 'Administrator', 'http://localhost:9090/files/admin001.png', 'ADMIN',
+        '13677889922', 'admin001@northeastern.edu');
 
 -- ----------------------------
 -- Table structure for business
@@ -89,19 +89,19 @@ CREATE TABLE `business`
 -- Records of business
 -- ----------------------------
 INSERT INTO `business`
-VALUES (2, 'meshe', '123456', 'ifashion', 'http://localhost:9090/files/1699023227734-avatar.png', 'BUSINESS',
-        '18899990000', 'meshe@xm.com',
-        'MsShe (Founded in 2010, defined as "European and American minimalist luxury style, dedicated to spreading the confident and elegant beauty of women.")',
+VALUES (2, 'hkneu', '123456', 'Hena', 'http://localhost:9090/files/b1.jpg', 'BUSINESS',
+        '74174741', 'hk@northeastern.edu',
+        'Hi, I am a Northeastern lecturer and have a few items to trade :)',
         'Reviewed');
 INSERT INTO `business`
-VALUES (3, 'perfume', '123456', 'Perfume House', 'http://localhost:9090/files/1699025808382-1.jpg', 'BUSINESS',
-        '18877776666', 'perfume@xm.com',
-        'Founded in 2010, a large-scale perfume wholesaler under the Momo Group. Promotes a "convenient and affordable" lifestyle, improving consumer quality of life. As of July 2023, it has spread across 31 provinces, 220+ cities, with nearly 2000 stores.',
+VALUES (3, 'djbneu', '123456', ' DaJiebao', 'http://localhost:9090/files/b2.jpg', 'BUSINESS',
+        '925594438', 'dajiebao@northeastern.edu',
+        'New CS student living on Oakland campus',
         'Under Review');
 INSERT INTO `business`
-VALUES (4, 'computer', '123456', 'Computer Accessories', 'http://localhost:9090/files/1699025860605-3.jpg',
-        'BUSINESS', '18800007777', 'computer@xm.com',
-        'Founded in 2010, a large wholesaler under Lulu Group. Promotes a "convenient and affordable" lifestyle, improving consumer quality of life. As of July 2023, it has spread across 31 provinces, 220+ cities, with nearly 2000 stores.',
+VALUES (4, 'ckneu', '123456', 'Christos', 'http://localhost:9090/files/b3.jpg',
+        'BUSINESS', '131494520', 'chubbell@northeastern.edu',
+        'Graduating and looking to sell all my stuff',
         'Under Review');
 
 -- ----------------------------
@@ -180,13 +180,13 @@ CREATE TABLE `comment`
 -- Records of comment
 -- ----------------------------
 INSERT INTO `comment`
-VALUES (1, 5, 5, 2, 'The clothes are nice, will come again next time!!!', '2023-11-10 17:10:30');
+VALUES (1, 5, 5, 2, 'I like it!!!', '2024-11-10 17:10:30');
 INSERT INTO `comment`
-VALUES (2, 5, 5, 2, 'These clothes are indeed great, really awesome!!!', '2023-11-10 17:12:55');
+VALUES (2, 5, 5, 2, 'These goods are really awesome!!!', '2024-11-10 17:12:55');
 INSERT INTO `comment`
 VALUES (3, 9, 5, 2,
-        'My friend said this store is good, so I bought something too. Let us see how it goes, if it is good, I will come back again!',
-        '2023-11-10 17:35:11');
+        'My friend said this seller is nice!',
+        '2024-11-10 18:35:11');
 
 -- ----------------------------
 -- Table structure for goods
@@ -215,35 +215,35 @@ CREATE TABLE `goods`
 -- ----------------------------
 INSERT INTO `goods`
 VALUES (5,
-        'Designer Slim Fit Short T-shirt for Women Summer New Round Neck Thin Short Sleeve White High Waist Tight Crop Top',
+        'Bike with helmet and lights',
         'http://localhost:9090/files/1699257986682-1.png',
         '<p><br/></p><p><img src="http://localhost:9090/files/1699261664936-d1.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699261669398-d2.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699261673992-d3.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699261678840-d4.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699261682978-d5.png" style="max-width:100%;" contenteditable="false"/></p>',
-        59.00, 'piece', 0, 16, 2);
+        150.00, 'piece', 0, 5, 2);
 INSERT INTO `goods`
-VALUES (6, 'MsShe Plus Size New Elastic Waist Decor Faux Two Piece Button Down Shirt Hem',
+VALUES (6, 'Breville 800ESXL Espresso Machine',
         'http://localhost:9090/files/1699428705672-1.png',
         '<p><img src="http://localhost:9090/files/1699428736624-d1.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699428739895-d2.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699428742752-d3.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699428745711-d4.png" style="max-width:100%;" contenteditable="false"/></p>',
-        159.00, 'piece', 0, 16, 2);
+        120.00, 'piece', 0, 7, 2);
 INSERT INTO `goods`
-VALUES (7, 'Thickened MsShe Plus Size 2023 New Autumn Dopamine V-neck Loose Hoodie for Winter',
+VALUES (7, 'Home Plant.Healthy home plant! pot included',
         'http://localhost:9090/files/1699445257509-1.png',
         '<p><img src="http://localhost:9090/files/1699445276508-d1.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699445283145-d2.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699445286061-d3.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699445289121-d4.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699445291821-d5.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699445294540-d6.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699445297097-d7.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699445299644-d8.png" style="max-width:100%;" contenteditable="false"/></p>',
-        129.00, 'piece', 0, 16, 2);
+        10.00, 'piece', 0, 16, 2);
 INSERT INTO `goods`
-VALUES (8, 'American Retro Short Sleeve T-shirt Women Pure Cotton Summer Ins Trend New Design V-neck',
+VALUES (8, 'Classic Novels Book Bundle.10 classic novels, hardcover & paperback',
         'http://localhost:9090/files/1699952256595-1.png',
         '<p><img src="http://localhost:9090/files/1699952270468-d1.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699952292732-d2.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699952296929-d3.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699952300817-d4.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699952304309-d5.png" style="max-width:100%;" contenteditable="false"/></p>',
-        59.00, 'piece', 0, 16, 2);
+        30.00, 'piece', 0, 1, 2);
 INSERT INTO `goods`
-VALUES (9, '[Gift Extended Strap] MsShe Plus Size Sports Bra Wireless Shockproof Push-up One-piece',
+VALUES (9, 'Wooden Bar Cart[lightweight w/ wheels,24 x15.5 in trays,32 in height to handlebar]',
         'http://localhost:9090/files/1699952462164-1.png',
         '<p><img src="http://localhost:9090/files/1699952478199-d1.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699952482285-d2.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699952488092-d4.png" style="max-width:100%;" contenteditable="false"/></p>',
-        89.00, 'piece', 0, 16, 2);
+        30.00, 'piece', 0, 6, 2);
 INSERT INTO `goods`
-VALUES (10, 'MsShe Plus Size Winter New Vintage Quilted Long Coat Adjustable Waist',
+VALUES (10, 'Teletubies Costume[perfect condition worn once for halloween im a 5\'\'11 costume is for TEEN size]',
         'http://localhost:9090/files/1699952515679-z1.png',
         '<p><img src="http://localhost:9090/files/1699952526794-1.png" style="max-width:100%;" contenteditable="false"/><img src="http://localhost:9090/files/1699952530411-2.png" style="max-width:100%;" contenteditable="false"/></p>',
-        199.00, 'piece', 0, 16, 2);
+        40.00, 'piece', 0, 15, 2);
 
 -- ----------------------------
 -- Table structure for notice
@@ -267,14 +267,14 @@ CREATE TABLE `notice`
 -- Records of notice
 -- ----------------------------
 INSERT INTO `notice`
-VALUES (1, 'The system is officially online today, internal testing begins',
-        'The system is officially online today, internal testing begins', '2024-11-05', 'admin');
+VALUES (1, 'Please ensure all items listed comply with our platform rules. No prohibited items such as counterfeit products or illegal substances are allowed.',
+        'Please ensure all items listed comply with our platform rules. No prohibited items such as counterfeit products or illegal substances are allowed.', '2024-11-05', 'admin');
 INSERT INTO `notice`
-VALUES (2, 'All features are completed and available for use', 'All features are completed and available for use',
+VALUES (2, 'Always meet in a public place on campus when exchanging items for safety reasons. ', 'Always meet in a public place on campus when exchanging items for safety reasons. ',
         '2024-11-05', 'admin');
 INSERT INTO `notice`
-VALUES (3, 'The weather is great today, a good time to go out and have fun',
-        'The weather is great today, a good time to go out and have fun', '2024-11-05', 'admin');
+VALUES (3, 'Please be cautious and report any suspicious behavior to the admin team immediately.',
+        'Please be cautious and report any suspicious behavior to the admin team immediately.', '2024-11-05', 'admin');
 
 
 -- ----------------------------
@@ -303,15 +303,15 @@ CREATE TABLE `orders`
 -- Records of orders
 -- ----------------------------
 INSERT INTO `orders`
-VALUES (3, '20231109175131', 5, 2, 2, 5, 118.00, 1, 'Reviewed');
+VALUES (3, '20241109175131', 5, 2, 2, 5, 118.00, 1, 'Reviewed');
 INSERT INTO `orders`
-VALUES (4, '20231109175131', 6, 2, 2, 5, 318.00, 1, 'Completed');
+VALUES (4, '20241109175131', 6, 2, 2, 5, 318.00, 1, 'Completed');
 INSERT INTO `orders`
-VALUES (6, '20231109175321', 5, 2, 2, 5, 118.00, 1, 'Completed');
+VALUES (6, '20241109175321', 5, 2, 2, 5, 118.00, 1, 'Completed');
 INSERT INTO `orders`
-VALUES (7, '20231109175321', 6, 2, 1, 5, 159.00, 1, 'Completed');
+VALUES (7, '20241109175321', 6, 2, 1, 5, 159.00, 1, 'Completed');
 INSERT INTO `orders`
-VALUES (8, '20231109180904', 7, 2, 1, 9, 129.00, 6, 'Completed');
+VALUES (8, '20241109180904', 7, 2, 1, 9, 129.00, 6, 'Completed');
 
 -- ----------------------------
 -- Table structure for type
@@ -346,7 +346,7 @@ INSERT INTO `type`
 VALUES (4, 'Home Textiles/Decor/Flowers', 'This is Home Textiles / Decor / Flowers',
         'http://localhost:9090/files/deco.png');
 INSERT INTO `type`
-VALUES (5, 'Automobiles/Accessories/Supplies', 'This is Automobiles / Accessories / Supplies',
+VALUES (5, 'Automobiles/Accessories/Bikes', 'This is Automobiles / Accessories / Bikes',
         'http://localhost:9090/files/car.png');
 INSERT INTO `type`
 VALUES (6, 'Furniture/Lighting/Bathroom', 'This is Furniture / Lighting / Bathroom',
@@ -407,7 +407,7 @@ CREATE TABLE `user`
 -- ----------------------------
 INSERT INTO `user`
 VALUES (5, 'Alice', '123456', 'Alice', 'http://localhost:9090/files/user1.png', 'USER',
-        '18811112222', 'ali@bm.com');
+        '9259259251', 'ali@bm.com');
 # INSERT INTO `user`
 # VALUES (9, 'Sam', '123456', 'Sam', 'http://localhost:9090/files/user2.png', 'USER', '18866660000',
 #         'sam@bm.com');
