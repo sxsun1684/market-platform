@@ -6,6 +6,8 @@ module.exports = defineConfig({
         ? '/market-platform/' // Replace '/my-project/' with your actual production base path
         : '/',
 
+    indexPath: './dist/public/index.html',
+
     devServer: {
         port: 8080
     },
