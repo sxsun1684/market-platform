@@ -22,24 +22,30 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
- * Token utility class
+ * Utility class for handling JWT tokens.
+ * Provides methods to create tokens and retrieve information about the currently logged-in user.
  */
 @Component
 public class TokenUtils {
 
     private static final Logger log = LoggerFactory.getLogger(TokenUtils.class);
 
+    // Static references to the services for user roles
     private static AdminService staticAdminService;
     private static BusinessService staticBusinessService;
     private static UserService staticUserService;
 
     @Resource
-    AdminService adminService;
+    AdminService adminService; // Admin service dependency
     @Resource
-    BusinessService businessService;
+    BusinessService businessService; // Business service dependency
     @Resource
-    UserService userService;
+    UserService userService; // User service dependency
 
+    /**
+     * Initializes static service instances after dependency injection.
+     * This ensures that static methods can access the injected services.
+     */
     @PostConstruct
     public void setUserService() {
         staticAdminService = adminService;
@@ -48,25 +54,37 @@ public class TokenUtils {
     }
 
     /**
-     * Generate token
+     * Creates a JWT token with the specified data and signature.
+     *
+     * @param data The payload to be included in the token (e.g., userId-role).
+     * @param sign The secret key used for signing the token.
+     * @return A JWT token string.
      */
     public static String createToken(String data, String sign) {
-        return JWT.create().withAudience(data) // Save userId-role in the token as payload
-                  .withExpiresAt(DateUtil.offsetHour(new Date(), 2)) // Token expires in 2 hours
-                  .sign(Algorithm.HMAC256(sign)); // Use password as the secret key for the token
+        return JWT.create()
+                  .withAudience(data) // Store the payload in the token
+                  .withExpiresAt(DateUtil.offsetHour(new Date(), 2)) // Set token expiration to 2 hours
+                  .sign(Algorithm.HMAC256(sign)); // Sign the token with the provided secret key
     }
 
     /**
-     * Get information of the currently logged-in user
+     * Retrieves the information of the currently logged-in user based on the token.
+     *
+     * @return The account object of the current user, or an empty account object if an error occurs.
      */
     public static Account getCurrentUser() {
         try {
+            // Get the current HTTP request
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            // Retrieve the token from the request header
             String token = request.getHeader(Constants.TOKEN);
             if (ObjectUtil.isNotEmpty(token)) {
+                // Decode the token to extract user role and ID
                 String userRole = JWT.decode(token).getAudience().get(0);
-                String userId = userRole.split("-")[0];  // Get user ID
-                String role = userRole.split("-")[1];    // Get role
+                String userId = userRole.split("-")[0]; // Extract the user ID
+                String role = userRole.split("-")[1]; // Extract the user role
+
+                // Return the user account based on their role
                 if (RoleEnum.ADMIN.name().equals(role)) {
                     return staticAdminService.selectById(Integer.valueOf(userId));
                 }
@@ -77,10 +95,11 @@ public class TokenUtils {
                     return staticUserService.selectById(Integer.valueOf(userId));
                 }
             }
-        } catch (Exception e) {
+        } catch(Exception e) {
+            // Log the error if retrieving user information fails
             log.error("Error occurred while getting the current user information", e);
         }
-        return new Account();  // Return an empty account object
+        // Return an empty account object if no user information is found
+        return new Account();
     }
 }
-

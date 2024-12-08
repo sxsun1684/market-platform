@@ -10,9 +10,9 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Business logic for the Type entity.
- * Handles operations related to type information.
- **/
+ * Service layer for handling business logic related to the Type entity.
+ * Provides operations for adding, deleting, updating, and querying type information.
+ */
 @Service
 public class TypeService {
 
@@ -20,21 +20,27 @@ public class TypeService {
     private TypeMapper typeMapper;
 
     /**
-     * Add a new type.
+     * Adds a new type.
+     *
+     * @param type The Type entity to be added.
      */
     public void add(Type type) {
         typeMapper.insert(type);
     }
 
     /**
-     * Delete a type by ID.
+     * Deletes a type by its ID.
+     *
+     * @param id The ID of the Type to be deleted.
      */
     public void deleteById(Integer id) {
         typeMapper.deleteById(id);
     }
 
     /**
-     * Delete multiple types in batch.
+     * Deletes multiple types by their IDs in batch.
+     *
+     * @param ids A list of IDs of the Types to be deleted.
      */
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
@@ -43,37 +49,48 @@ public class TypeService {
     }
 
     /**
-     * Update type information by ID.
+     * Updates type information by its ID.
+     *
+     * @param type The updated Type entity.
      */
     public void updateById(Type type) {
         typeMapper.updateById(type);
     }
 
     /**
-     * Find a type by ID.
+     * Finds a type by its ID.
+     *
+     * @param id The ID of the Type to be retrieved.
+     * @return The Type entity matching the given ID.
      */
     public Type selectById(Integer id) {
         return typeMapper.selectById(id);
     }
 
     /**
-     * Find all types that match the given criteria.
+     * Finds all types that match the given criteria.
+     *
+     * @param type The criteria for querying types.
+     * @return A list of Type entities matching the criteria.
      */
     public List<Type> selectAll(Type type) {
         return typeMapper.selectAll(type);
     }
 
     /**
-     * Paginated query for types.
+     * Retrieves types with pagination based on filter criteria.
      *
-     * @param type The criteria for querying types.
-     * @param pageNum The page number to retrieve.
+     * @param type     The criteria for querying types.
+     * @param pageNum  The page number to retrieve.
      * @param pageSize The number of records per page.
-     * @return A PageInfo object containing the result.
+     * @return A PageInfo object containing the paginated result.
      */
     public PageInfo<Type> selectPage(Type type, Integer pageNum, Integer pageSize) {
+        // Start pagination using PageHelper
         PageHelper.startPage(pageNum, pageSize);
+        // Query the list of types based on filter criteria
         List<Type> list = typeMapper.selectAll(type);
+        // Return the paginated result as a PageInfo object
         return PageInfo.of(list);
     }
 

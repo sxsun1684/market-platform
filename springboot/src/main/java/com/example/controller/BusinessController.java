@@ -10,8 +10,9 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Merchant frontend operation interface
- **/
+ * API controller for managing business-related operations.
+ * Provides endpoints for adding, deleting, updating, and querying businesses.
+ */
 @RestController
 @RequestMapping("/business")
 public class BusinessController {
@@ -20,7 +21,10 @@ public class BusinessController {
     private BusinessService businessService;
 
     /**
-     * Add a new business
+     * Adds a new business.
+     *
+     * @param business The business entity to be added.
+     * @return A success result.
      */
     @PostMapping("/add")
     public Result add(@RequestBody Business business) {
@@ -29,7 +33,10 @@ public class BusinessController {
     }
 
     /**
-     * Delete a business by ID
+     * Deletes a business by its ID.
+     *
+     * @param id The ID of the business to be deleted.
+     * @return A success result.
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
@@ -38,7 +45,10 @@ public class BusinessController {
     }
 
     /**
-     * Batch delete businesses
+     * Deletes multiple businesses in batch.
+     *
+     * @param ids The list of IDs of businesses to be deleted.
+     * @return A success result.
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
@@ -47,7 +57,10 @@ public class BusinessController {
     }
 
     /**
-     * Update a business by ID
+     * Updates a business by its ID.
+     *
+     * @param business The business entity containing updated information.
+     * @return A success result.
      */
     @PutMapping("/update")
     public Result updateById(@RequestBody Business business) {
@@ -56,7 +69,10 @@ public class BusinessController {
     }
 
     /**
-     * Query a business by ID
+     * Queries a business by its ID.
+     *
+     * @param id The ID of the business to query.
+     * @return A result containing the queried business entity.
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
@@ -65,7 +81,10 @@ public class BusinessController {
     }
 
     /**
-     * Query all businesses
+     * Queries all businesses that match the provided criteria.
+     *
+     * @param business The criteria for querying businesses.
+     * @return A result containing a list of matching businesses.
      */
     @GetMapping("/selectAll")
     public Result selectAll(Business business) {
@@ -74,7 +93,12 @@ public class BusinessController {
     }
 
     /**
-     * Paginated query for businesses
+     * Queries businesses with pagination support.
+     *
+     * @param business The criteria for querying businesses.
+     * @param pageNum The page number to retrieve (default is 1).
+     * @param pageSize The number of records per page (default is 10).
+     * @return A result containing a paginated list of businesses.
      */
     @GetMapping("/selectPage")
     public Result selectPage(Business business,
@@ -83,5 +107,4 @@ public class BusinessController {
         PageInfo<Business> page = businessService.selectPage(business, pageNum, pageSize);
         return Result.success(page);
     }
-
 }

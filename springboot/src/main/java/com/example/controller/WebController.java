@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * Basic front-end interface
+ * Basic front-end interface for handling general account operations.
+ * Provides endpoints for login, registration, and password update.
  */
 @RestController
 public class WebController {
@@ -26,13 +27,21 @@ public class WebController {
     @Resource
     private UserService userService;
 
+    /**
+     * Basic endpoint for testing API availability.
+     *
+     * @return A success message indicating successful access.
+     */
     @GetMapping("/")
     public Result hello() {
         return Result.success("Access successful");
     }
 
     /**
-     * Login
+     * Handles login requests for different roles.
+     *
+     * @param account The account information containing username, password, and role.
+     * @return A success result with the account details if login is successful.
      */
     @PostMapping("/login")
     public Result login(@RequestBody Account account) {
@@ -53,7 +62,10 @@ public class WebController {
     }
 
     /**
-     * Register
+     * Handles registration requests for different roles.
+     *
+     * @param account The account information containing username, password, and role.
+     * @return A success result upon successful registration.
      */
     @PostMapping("/register")
     public Result register(@RequestBody Account account) {
@@ -74,7 +86,10 @@ public class WebController {
     }
 
     /**
-     * Update password
+     * Handles password update requests for different roles.
+     *
+     * @param account The account information containing username, old password, new password, and role.
+     * @return A success result upon successful password update.
      */
     @PutMapping("/updatePassword")
     public Result updatePassword(@RequestBody Account account) {
@@ -93,5 +108,4 @@ public class WebController {
         }
         return Result.success();
     }
-
 }

@@ -9,8 +9,9 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Admin frontend operation interface
- **/
+ * API controller for managing administrator-related operations.
+ * Provides endpoints for adding, deleting, updating, and querying administrators.
+ */
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -19,7 +20,10 @@ public class AdminController {
     private AdminService adminService;
 
     /**
-     * Add new admin
+     * Adds a new administrator.
+     *
+     * @param admin The administrator entity to be added.
+     * @return A success result.
      */
     @PostMapping("/add")
     public Result add(@RequestBody Admin admin) {
@@ -28,7 +32,10 @@ public class AdminController {
     }
 
     /**
-     * Delete by ID
+     * Deletes an administrator by its ID.
+     *
+     * @param id The ID of the administrator to be deleted.
+     * @return A success result.
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
@@ -37,7 +44,10 @@ public class AdminController {
     }
 
     /**
-     * Batch delete
+     * Deletes multiple administrators in batch.
+     *
+     * @param ids The list of IDs of administrators to be deleted.
+     * @return A success result.
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
@@ -46,7 +56,10 @@ public class AdminController {
     }
 
     /**
-     * Update by ID
+     * Updates an administrator by its ID.
+     *
+     * @param admin The administrator entity containing updated information.
+     * @return A success result.
      */
     @PutMapping("/update")
     public Result updateById(@RequestBody Admin admin) {
@@ -55,7 +68,10 @@ public class AdminController {
     }
 
     /**
-     * Query by ID
+     * Queries an administrator by its ID.
+     *
+     * @param id The ID of the administrator to query.
+     * @return A result containing the queried administrator entity.
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
@@ -64,7 +80,10 @@ public class AdminController {
     }
 
     /**
-     * Query all
+     * Queries all administrators that match the provided criteria.
+     *
+     * @param admin The criteria for querying administrators.
+     * @return A result containing a list of matching administrators.
      */
     @GetMapping("/selectAll")
     public Result selectAll(Admin admin) {
@@ -73,7 +92,12 @@ public class AdminController {
     }
 
     /**
-     * Paginated query
+     * Queries administrators with pagination support.
+     *
+     * @param admin The criteria for querying administrators.
+     * @param pageNum The page number to retrieve (default is 1).
+     * @param pageSize The number of records per page (default is 10).
+     * @return A result containing a paginated list of administrators.
      */
     @GetMapping("/selectPage")
     public Result selectPage(Admin admin,
@@ -82,5 +106,4 @@ public class AdminController {
         PageInfo<Admin> page = adminService.selectPage(admin, pageNum, pageSize);
         return Result.success(page);
     }
-
 }

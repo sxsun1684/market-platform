@@ -16,13 +16,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.management.relation.Role;
 import java.util.Date;
 import java.util.List;
 
 /**
- * 收藏业务处理
- **/
+ * Service for handling order-related business logic.
+ * Provides functionalities to add, delete, update, and query orders.
+ */
 @Service
 public class OrdersService {
 
@@ -34,23 +34,28 @@ public class OrdersService {
     private GoodsMapper goodsMapper;
 
     /**
-     * 新增
+     * Adds a new order and processes associated cart items.
+     *
+     * @param orders The order entity containing cart data to be processed.
      */
     public void add(Orders orders) {
+        // Generate a unique order ID using the current date and time
         orders.setOrderId(DateUtil.format(new Date(), "yyyyMMddHHmmss"));
-        for (Cart cart : orders.getCartData()) {
+
+        // Process each item in the cart associated with the order
+        for(Cart cart: orders.getCartData()) {
             Orders dbOrders = new Orders();
-            BeanUtils.copyProperties(orders, dbOrders);
+            BeanUtils.copyProperties(orders, dbOrders); // Copy common properties from the order entity
             dbOrders.setGoodsId(cart.getGoodsId());
             dbOrders.setBusinessId(cart.getBusinessId());
             dbOrders.setNum(cart.getNum());
-            dbOrders.setPrice(cart.getNum() * cart.getGoodsPrice());
-            ordersMapper.insert(dbOrders);
+            dbOrders.setPrice(cart.getNum() * cart.getGoodsPrice()); // Calculate the total price for the cart item
+            ordersMapper.insert(dbOrders); // Insert the processed order into the database
 
-            // 把购物车里对应的商品删掉
+            // Remove the processed item from the shopping cart
             cartMapper.deleteById(cart.getId());
 
-            // 把商品销量增加一下
+            // Update the sales count for the associated goods
             Goods goods = goodsMapper.selectById(cart.getGoodsId());
             goods.setCount(goods.getCount() + cart.getNum());
             goodsMapper.updateById(goods);
@@ -58,53 +63,77 @@ public class OrdersService {
     }
 
     /**
-     * 删除
+     * Deletes an order by its ID.
+     *
+     * @param id The ID of the order to delete.
      */
     public void deleteById(Integer id) {
         ordersMapper.deleteById(id);
     }
 
     /**
-     * 批量删除
+     * Deletes multiple orders by their IDs.
+     *
+     * @param ids List of IDs of orders to delete.
      */
     public void deleteBatch(List<Integer> ids) {
-        for (Integer id : ids) {
+        for(Integer id: ids) {
             ordersMapper.deleteById(id);
         }
     }
 
     /**
-     * 修改
+     * Updates an order by its ID.
+     *
+     * @param orders The updated order entity.
      */
     public void updateById(Orders orders) {
         ordersMapper.updateById(orders);
     }
 
     /**
-     * 根据ID查询
+     * Retrieves an order by its ID.
+     *
+     * @param id The ID of the order to retrieve.
+     * @return The order entity matching the given ID.
      */
     public Orders selectById(Integer id) {
         return ordersMapper.selectById(id);
     }
 
     /**
-     * 查询所有
+     * Retrieves all orders matching the given criteria.
+     *
+     * @param orders The filter criteria for retrieving orders.
+     * @return List of orders matching the criteria.
      */
     public List<Orders> selectAll(Orders orders) {
         return ordersMapper.selectAll(orders);
     }
 
     /**
-     * 分页查询
+     * Retrieves paginated orders based on filter criteria.
+     *
+     * @param orders   Filter criteria for retrieving orders.
+     * @param pageNum  The page number to retrieve.
+     * @param pageSize The number of records per page.
+     * @return Paginated list of orders.
      */
     public PageInfo<Orders> selectPage(Orders orders, Integer pageNum, Integer pageSize) {
+        // Get the currently logged-in user
         Account currentUser = TokenUtils.getCurrentUser();
+
+        // Apply user-specific filters
         if (RoleEnum.USER.name().equals(currentUser.getRole())) {
             orders.setUserId(currentUser.getId());
         }
+
+        // Apply business-specific filters
         if (RoleEnum.BUSINESS.name().equals(currentUser.getRole())) {
             orders.setBusinessId(currentUser.getId());
         }
+
+        // Start paginated query using PageHelper
         PageHelper.startPage(pageNum, pageSize);
         List<Orders> list = ordersMapper.selectAll(orders);
         return PageInfo.of(list);

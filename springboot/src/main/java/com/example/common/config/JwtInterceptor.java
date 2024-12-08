@@ -23,7 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * JWT Interceptor
+ * Interceptor for handling JWT authentication.
+ * Validates the token and authenticates the user before processing the request.
  */
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
@@ -32,11 +33,22 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     @Resource
     private AdminService adminService;
+
     @Resource
     private BusinessService businessService;
+
     @Resource
     private UserService userService;
 
+    /**
+     * Intercepts and processes HTTP requests to authenticate the user via JWT.
+     *
+     * @param request  The HTTP request.
+     * @param response The HTTP response.
+     * @param handler  The handler for the request.
+     * @return true if the request is authenticated and allowed to proceed, otherwise throws an exception.
+     * @throws CustomException If the token is invalid, expired, or user authentication fails.
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         // 1. Retrieve the token from the HTTP request header
@@ -45,17 +57,21 @@ public class JwtInterceptor implements HandlerInterceptor {
             // If not found in the header, try to get it from the request parameters
             token = request.getParameter(Constants.TOKEN);
         }
+
         // 2. Start authentication
         if (ObjectUtil.isEmpty(token)) {
+            // If no token is provided, throw an exception
             throw new CustomException(ResultCodeEnum.TOKEN_INVALID_ERROR);
         }
+
         Account account = null;
         try {
-            // Parse the token to extract stored data
+            // Decode the token to extract user ID and role
             String userRole = JWT.decode(token).getAudience().get(0);
             String userId = userRole.split("-")[0];
             String role = userRole.split("-")[1];
-            // Query the database based on userId
+
+            // Query the database to retrieve the user's account details
             if (RoleEnum.ADMIN.name().equals(role)) {
                 account = adminService.selectById(Integer.valueOf(userId));
             }
@@ -66,18 +82,25 @@ public class JwtInterceptor implements HandlerInterceptor {
                 account = userService.selectById(Integer.valueOf(userId));
             }
         } catch (Exception e) {
+            // Handle errors during token parsing or user data retrieval
             throw new CustomException(ResultCodeEnum.TOKEN_CHECK_ERROR);
         }
+
+        // 3. Verify if the account exists
         if (ObjectUtil.isNull(account)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
+
         try {
-            // Verify the token using the user's password
+            // 4. Validate the token using the user's password as the secret key
             JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(account.getPassword())).build();
             jwtVerifier.verify(token); // Validate the token
         } catch (JWTVerificationException e) {
+            // Handle token verification failure
             throw new CustomException(ResultCodeEnum.TOKEN_CHECK_ERROR);
         }
+
+        // Token is valid, allow the request to proceed
         return true;
     }
 }

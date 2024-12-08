@@ -406,10 +406,10 @@ CREATE TABLE `user`
 -- Records of user
 -- ----------------------------
 INSERT INTO `user`
-VALUES (5, 'Alice', '123456', 'Alice', 'http://localhost:9090/files/user1.png', 'USER',
-        '9259259251', 'ali@bm.com');
-# INSERT INTO `user`
-# VALUES (9, 'Sam', '123456', 'Sam', 'http://localhost:9090/files/user2.png', 'USER', '18866660000',
-#         'sam@bm.com');
+VALUES (5, 'alice', '123456', 'alice', 'http://localhost:9090/files/user1.png', 'USER',
+        '9259259251', 'ali@northeastern.edu');
+INSERT INTO `user`
+VALUES (9, 'sam', '123456', 'sam', 'http://localhost:9090/files/user2.png', 'USER', '18866660000',
+        'sam@northeastern.edu.com');
 
 SET FOREIGN_KEY_CHECKS = 1;

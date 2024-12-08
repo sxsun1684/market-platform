@@ -1,6 +1,6 @@
 package com.example.entity;
 
-public class RelateDTO {
+public class RelatedAlgo {
     /** User id */
     private Integer useId;
     /** Goods id */
@@ -16,7 +16,7 @@ public class RelateDTO {
      * @param index the index value
      */
 
-    public RelateDTO(Integer useId, Integer goodsId, Integer index) {
+    public RelatedAlgo(Integer useId, Integer goodsId, Integer index) {
         this.useId = useId;
         this.goodsId = goodsId;
         this.index = index;

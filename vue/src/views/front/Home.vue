@@ -3,8 +3,8 @@
 <!--    <div style="height: 30px; background-color: rgba(246,102,136,0.6)"></div>-->
     <div style="display: flex">
       <div class="left"></div>
-      <div style="width: 66%; background: rgba(255,255,255,0.63);backdrop-filter: blur(10px); margin-bottom: 50px">
-        <div style="color: rgba(203,0,0,0.85); margin: 15px 0 15px 18px; font-weight: bold; font-size: 16px">Subject market</div>
+      <div style="width: 66%; background: rgba(255,255,255,0.76);backdrop-filter: blur(10px); margin-bottom: 50px">
+        <div style="color: rgb(255,97,140); margin: 15px 0 15px 18px; font-weight: bold; font-size: 16px">Subject market</div>
         <div style="display: flex; margin: 0 25px; height: 550px">
           <div style="flex: 2">
             <div style="display: flex; color: #666666FF; margin: 14px 0" v-for="item in typeData">
@@ -37,7 +37,7 @@
               </div>
             </div>
           </div>
-          <div style="flex: 3; background-color: rgba(255,230,230,0.91); margin-top: 15px; margin-left: 15px; border-radius: 10px">
+          <div style="flex: 3; background-color: rgba(205,233,255,0.62); margin-top: 15px; margin-left: 15px; border-radius: 10px">
             <div style="text-align: center; margin-top: 30px">
               <img @click="navTo('/front/person')" :src="user.avatar" alt="" style="width: 80px; height: 80px; border-radius: 50%">
               <div style="margin-top: 10px">Hi，{{user.name}}</div>
@@ -84,7 +84,7 @@
             <el-col :span="5" v-for="item in goodsData">
               <img @click="navTo('/front/detail?id=' + item.id)" :src="item.img" alt="" style="width: 100%; height: 175px; border-radius: 10px; border: #cccccc 1px solid">
               <div style="margin-top: 10px; font-weight: 500; font-size: 16px; width: 180px; color: #000000FF; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{item.name}}</div>
-              <div style="margin-top: 5px; font-size: 20px; color: rgba(203,0,0,0.85)">$ {{item.price}} / {{item.unit}}</div>
+              <div style="margin-top: 5px; font-size: 20px; color: rgb(255,97,140)">$ {{item.price}} / {{item.unit}}</div>
             </el-col>
           </el-row>
         </div>

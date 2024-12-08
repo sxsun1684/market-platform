@@ -10,8 +10,9 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Cart Frontend Operation Interface
- **/
+ * API controller for managing shopping cart operations.
+ * Provides endpoints for adding, deleting, updating, and querying cart items.
+ */
 @RestController
 @RequestMapping("/cart")
 public class CartController {
@@ -20,7 +21,10 @@ public class CartController {
     private CartService cartService;
 
     /**
-     * Add a new item to the cart
+     * Adds a new item to the cart.
+     *
+     * @param cart The cart item information to be added.
+     * @return A success result.
      */
     @PostMapping("/add")
     public Result add(@RequestBody Cart cart) {
@@ -29,7 +33,10 @@ public class CartController {
     }
 
     /**
-     * Delete an item from the cart by ID
+     * Deletes an item from the cart by its ID.
+     *
+     * @param id The ID of the cart item to be deleted.
+     * @return A success result.
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
@@ -38,7 +45,10 @@ public class CartController {
     }
 
     /**
-     * Delete multiple items from the cart
+     * Deletes multiple items from the cart in batch.
+     *
+     * @param ids The list of IDs of cart items to be deleted.
+     * @return A success result.
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
@@ -47,7 +57,10 @@ public class CartController {
     }
 
     /**
-     * Update cart information
+     * Updates cart information for a specific item.
+     *
+     * @param cart The cart item information containing updated details.
+     * @return A success result.
      */
     @PutMapping("/update")
     public Result updateById(@RequestBody Cart cart) {
@@ -56,7 +69,10 @@ public class CartController {
     }
 
     /**
-     * Retrieve cart information by ID
+     * Retrieves cart information by its ID.
+     *
+     * @param id The ID of the cart item to retrieve.
+     * @return A result containing the cart item details.
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
@@ -65,7 +81,10 @@ public class CartController {
     }
 
     /**
-     * Retrieve all cart items
+     * Retrieves all cart items that match the provided criteria.
+     *
+     * @param cart The criteria for querying cart items.
+     * @return A result containing a list of cart items.
      */
     @GetMapping("/selectAll")
     public Result selectAll(Cart cart) {
@@ -74,7 +93,12 @@ public class CartController {
     }
 
     /**
-     * Paginated query for cart items
+     * Retrieves cart items with pagination support.
+     *
+     * @param cart The criteria for querying cart items.
+     * @param pageNum The page number to retrieve (default is 1).
+     * @param pageSize The number of records per page (default is 10).
+     * @return A result containing a paginated list of cart items.
      */
     @GetMapping("/selectPage")
     public Result selectPage(Cart cart,
@@ -83,5 +107,4 @@ public class CartController {
         PageInfo<Cart> page = cartService.selectPage(cart, pageNum, pageSize);
         return Result.success(page);
     }
-
 }
