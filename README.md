@@ -85,6 +85,35 @@ Data Preparation: Extract user-product behavior data from favorites, cart, order
 Weight Calculation: Use multithreading to calculate weights for each user-product pair.
 
 Collaborative Filtering: Use UserCF.recommend to compute recommendations.
+```
+for (Goods goods : allGoods) {
+            Integer goodsId = goods.getId();
+            for (User user : allUsers) {
+                threadPool.execute(() -> {
+                    Integer userId = user.getId();
+                    int index = 1;
+
+                    if (allCollects.stream().anyMatch(x -> x.getGoodsId().equals(goodsId) && x.getUserId().equals(userId))) {
+                        index += 1;
+                    }
+                    if (allCarts.stream().anyMatch(x -> x.getGoodsId().equals(goodsId) && x.getUserId().equals(userId))) {
+                        index += 2;
+                    }
+                    if (allOrders.stream().anyMatch(x -> x.getGoodsId().equals(goodsId) && x.getUserId().equals(userId))) {
+                        index += 3;
+                    }
+                    if (allComments.stream().anyMatch(x -> x.getGoodsId().equals(goodsId) && x.getUserId().equals(userId))) {
+                        index += 2;
+                    }
+
+                    if (index > 1) {
+                        data.add(new RelatedAlgo(userId, goodsId, index));
+                    }
+                    countDownLatch.countDown();
+                });
+            }
+        }
+```
 
 
 ```
