@@ -152,7 +152,7 @@ return list;
 
 
 ## Requirements
-- **Backend**: Java 17+, Spring Boot
-- **Frontend**: Node.js 16+, Vue
-- **Database**: MySQL, navicat
-- **Tools**: Maven, npm or yarn
+- **Backend**: Java 17+, Spring Boot;
+- **Frontend**: Node.js 16+, Vue, Element-UI;
+- **Database**: MySQL, navicat;
+- **Tools**: Maven, npm or yarn;
