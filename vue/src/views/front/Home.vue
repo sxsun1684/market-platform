@@ -79,7 +79,7 @@
           </div>
         </div>
         <div style="margin: 40px 0 0 15px; height: 40px; background-color: #86b600; font-size: 20px; color: white; width: 130px; font-weight: bold; line-height: 40px; text-align: center; border-radius: 20px">Hot goods</div>
-        <div style="margin: 10px 5px 0 5px">
+        <div style="margin: 10px 5px 0px 5px">
           <el-row>
             <el-col :span="5" v-for="item in goodsData">
               <img @click="navTo('/front/detail?id=' + item.id)" :src="item.img" alt="" style="width: 100%; height: 175px; border-radius: 10px; border: #cccccc 1px solid">
