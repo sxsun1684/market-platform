@@ -10,8 +10,9 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Front-end controller interface for managing category information
- **/
+ * Controller for managing category information.
+ * Provides endpoints for adding, deleting, updating, and querying categories.
+ */
 @RestController
 @RequestMapping("/type")
 public class TypeController {
@@ -20,7 +21,10 @@ public class TypeController {
     private TypeService typeService;
 
     /**
-     * Add new category
+     * Add a new category.
+     *
+     * @param type The category entity to be added.
+     * @return A success result.
      */
     @PostMapping("/add")
     public Result add(@RequestBody Type type) {
@@ -29,7 +33,10 @@ public class TypeController {
     }
 
     /**
-     * Delete category by ID
+     * Delete a category by its ID.
+     *
+     * @param id The ID of the category to be deleted.
+     * @return A success result.
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
@@ -38,7 +45,10 @@ public class TypeController {
     }
 
     /**
-     * Batch delete categories
+     * Delete multiple categories by their IDs.
+     *
+     * @param ids A list of IDs representing the categories to be deleted.
+     * @return A success result.
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
@@ -47,7 +57,10 @@ public class TypeController {
     }
 
     /**
-     * Update category by ID
+     * Update an existing category by its ID.
+     *
+     * @param type The updated category entity.
+     * @return A success result.
      */
     @PutMapping("/update")
     public Result updateById(@RequestBody Type type) {
@@ -56,7 +69,10 @@ public class TypeController {
     }
 
     /**
-     * Get category by ID
+     * Retrieve a category by its ID.
+     *
+     * @param id The ID of the category to retrieve.
+     * @return A success result containing the retrieved category entity.
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
@@ -65,7 +81,10 @@ public class TypeController {
     }
 
     /**
-     * Get all categories
+     * Retrieve all categories that match the specified criteria.
+     *
+     * @param type The category entity containing the filter criteria.
+     * @return A success result containing a list of matching categories.
      */
     @GetMapping("/selectAll")
     public Result selectAll(Type type) {
@@ -74,7 +93,12 @@ public class TypeController {
     }
 
     /**
-     * Paginated query of categories
+     * Retrieve categories with pagination support.
+     *
+     * @param type The category entity containing the filter criteria.
+     * @param pageNum The page number to retrieve (default is 1).
+     * @param pageSize The number of items per page (default is 10).
+     * @return A success result containing paginated category data.
      */
     @GetMapping("/selectPage")
     public Result selectPage(Type type,
@@ -83,5 +107,4 @@ public class TypeController {
         PageInfo<Type> page = typeService.selectPage(type, pageNum, pageSize);
         return Result.success(page);
     }
-
 }

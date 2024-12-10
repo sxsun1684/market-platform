@@ -18,54 +18,57 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * File API
+ * File API Controller
+ * Provides endpoints for file upload, download, and deletion, as well as integration with WangEditor.
  */
 @RestController
-@RequestMapping("/files")
+@RequestMapping ("/files")
 public class FileController {
 
     // File upload storage path
     private static final String filePath = System.getProperty("user.dir") + "/files/";
 
-    @Value("${server.port:9090}")
+    @Value ("${server.port:9090}")
     private String port;
 
-    @Value("${ip:localhost}")
+    @Value ("${ip:localhost}")
     private String ip;
 
     /**
-     * File upload
+     * Upload a file to the server.
+     *
+     * @param file The file to be uploaded.
+     * @return A success result containing the file's access URL.
      */
-    @PostMapping("/upload")
+    @PostMapping ("/upload")
     public Result upload(MultipartFile file) {
         String flag;
-        synchronized (FileController.class) {
+        synchronized(FileController.class) {
             flag = System.currentTimeMillis() + "";
             ThreadUtil.sleep(1L);
         }
         String fileName = file.getOriginalFilename();
         try {
-            if (!FileUtil.isDirectory(filePath)) {
+            if (! FileUtil.isDirectory(filePath)) {
                 FileUtil.mkdir(filePath);
             }
             // File storage format: timestamp-filename
-            FileUtil.writeBytes(file.getBytes(), filePath + flag + "-" + fileName);  // ***/manager/files/1697438073596-avatar.png
+            FileUtil.writeBytes(file.getBytes(), filePath + flag + "-" + fileName);
             System.out.println(fileName + "--Upload successful");
-
-        } catch (Exception e) {
+        } catch(Exception e) {
             System.err.println(fileName + "--File upload failed");
         }
         String http = "http://" + ip + ":" + port + "/files/";
-        return Result.success(http + flag + "-" + fileName);  // http://localhost:9090/files/1697438073596-avatar.png
+        return Result.success(http + flag + "-" + fileName);
     }
 
     /**
-     * Retrieve file
+     * Download a file from the server.
      *
-     * @param flag
-     * @param response
+     * @param flag     The unique identifier of the file (timestamp-filename format).
+     * @param response The HTTP response to write the file data to.
      */
-    @GetMapping("/{flag}")   //  1697438073596-avatar.png
+    @GetMapping ("/{flag}")
     public void avatarPath(@PathVariable String flag, HttpServletResponse response) {
         OutputStream os;
         try {
@@ -78,26 +81,29 @@ public class FileController {
                 os.flush();
                 os.close();
             }
-        } catch (Exception e) {
+        } catch(Exception e) {
             System.out.println("File download failed");
         }
     }
 
     /**
-     * Delete file
+     * Delete a file from the server.
      *
-     * @param flag
+     * @param flag The unique identifier of the file (timestamp-filename format).
      */
-    @DeleteMapping("/{flag}")
+    @DeleteMapping ("/{flag}")
     public void delFile(@PathVariable String flag) {
         FileUtil.del(filePath + flag);
         System.out.println("Deleted file " + flag + " successfully");
     }
 
     /**
-     * WangEditor file upload API
+     * Upload a file through WangEditor integration.
+     *
+     * @param file The file to be uploaded.
+     * @return A map containing the result for WangEditor, including the file's access URL.
      */
-    @PostMapping("/wang/upload")
+    @PostMapping ("/wang/upload")
     public Map<String, Object> wangEditorUpload(MultipartFile file) {
         String flag = System.currentTimeMillis() + "";
         String fileName = file.getOriginalFilename();
@@ -106,12 +112,12 @@ public class FileController {
             FileUtil.writeBytes(file.getBytes(), filePath + flag + "-" + fileName);
             System.out.println(fileName + "--Upload successful");
             Thread.sleep(1L);
-        } catch (Exception e) {
+        } catch(Exception e) {
             System.err.println(fileName + "--File upload failed");
         }
         String http = "http://" + ip + ":" + port + "/files/";
         Map<String, Object> resMap = new HashMap<>();
-        // Parameters to return after successful image upload in WangEditor
+        // Response for WangEditor image upload
         resMap.put("errno", 0);
         resMap.put("data", CollUtil.newArrayList(Dict.create().set("url", http + flag + "-" + fileName)));
         return resMap;
