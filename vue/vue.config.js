@@ -6,6 +6,7 @@ module.exports = defineConfig({
         ? '/market-platform/' // Replace '/my-project/' with your actual production base path
         : '/',
 
+
     indexPath: 'index.html',
 
     devServer: {
