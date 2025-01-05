@@ -6,6 +6,7 @@ This project is a small-scale online second-hand trading platform for students a
 ## Implementation
 The website is based on a multi-merchant structure, allowing different merchants to manage their own data independently. A collaborative filtering recommendation algorithm is integrated for personalized recommendations, enabling tailored suggestions for users. The recommendation process leverages asynchronous multi-threading to efficiently handle data from different users.
 
+![system design](./display/system-design.png)
 ## Key Features by Role
 
 ### Administrator
@@ -17,6 +18,19 @@ The website is based on a multi-merchant structure, allowing different merchants
 - Manage reviews on products from different merchants
 - Publish system-wide announcements
 
+| Manage Admin | Manage Sellers | Manage Buyers|
+|-------|-------|-------|
+| ![Manage Admin](./display/admin.png) | ![Manage Sellers](./display/admin-store.png) | ![Manage Buyers](./display/admin-user.png) |
+
+| Manage Notification | Manage Product Categories |
+|-------|-------|
+| ![Manage Notification](./display/admin-notice.png) | ![Manage product categories](./display/admin-type.png) | 
+
+| Manage Order | Manage Comments |Manage Products |
+|-------|-------|-------|
+| ![Manage Order](./display/admin-order.png) | ![Manage Comments](./display/admin-comment.png) |  ![](./display/admin-products.png) | 
+
+
 ### Business: Student Seller
 - Register, Login, Personal Dashboard, Change Password
 - Publish product information
@@ -25,7 +39,7 @@ The website is based on a multi-merchant structure, allowing different merchants
 
 | Seller Console | Selller : Order Track | Seller : Order Management |
 |-------|-------|-------|
-| ![图片1](./display/seller-console.png) | ![图片2](./display/seller-order.png) | ![图片3](./display/seller_manage.png) |
+| ![Seller Console](./display/seller-console.png) | ![Selller : Order Track](./display/seller-order.png) | ![Seller : Order Management](./display/seller_manage.png) |
 
 
 ### User: Student Buyer
@@ -37,6 +51,14 @@ The website is based on a multi-merchant structure, allowing different merchants
 - Leave reviews for purchased products after completing an order
 - Maintain shipping address information
 - View their orders and track the status of placed orders
+
+| Register | Login | Change Password|
+|-------|-------|-------|
+| ![Register](./display/user-register.png) | ![Login](./display/user-login.png) | ![Change Password](./display/user-password.png) |
+
+| Comments | View Products | Favourites|
+|-------|-------|-------|
+| ![Comments](./display/user-comment.png) | ![View Products](./display/user-view.png) | ![My Favourites](./display/user-saved.png) |
 
 ---
 ## GoodsService Documentation
@@ -90,6 +112,27 @@ The recommendation feature combines user behavior (e.g., favorites, cart additio
 4. Comment: Weight 2
 
 These behaviors are abstracted into a RelatedAlgo relationship table, which is fed into the collaborative filtering algorithm for recommendations.
+
+
+**Example**:
+
+User A and User B both showed behavioral correlations after browsing costume props. However, instead of repeatedly recommending the same product, the recommendation system suggested the coffee machine added to User A's cart to User B, and the plant added to User B's cart to User A.
+
+| User A's Behaviour | User A's Behaviour| 
+|-------|-------|
+| ![User A's Behaviour](./display/user1-behaviour.png) | ![User A's Behaviour](./display/user1-recommend.png) | 
+
+| User B : Recommendation | User B : Recommendation  |
+|-------|-------|
+| ![User B : Recommendation](./display/user2-behaviour.png) |![User B : Recommendation](./display/user2-recommend.png) |
+
+**Limitations**:
+1. **Cold Start Problem**: For new users or new products, the system may perform poorly due to insufficient behavioral data to establish correlations.
+2. **Lack of Context Awareness**: The system may not consider contextual factors like time, location, or user mood, resulting in recommendations that do not match the user’s immediate needs or circumstances.
+
+**Areas for Improvement**:
+1. **Enhancing User Feedback Mechanisms**: Collect feedback on recommended items (e.g., click-through rates, conversions) to iteratively adjust and optimize the recommendation model.
+2. **Integrating Content-Based Recommendations**: Combine collaborative filtering with content-based methods by analyzing product descriptions or images to complement behavioral insights.
 
 #### 4. Recommendation Feature
 
@@ -167,3 +210,23 @@ return list;
 - **Frontend**: Node.js 16+, Vue, Element UI
 - **Database**: MySQL(JDBC)
 - **Tools**: Maven, npm
+
+
+## Run
+- **Start the Spring Boot Backend**：run the document of SpringbootApplication
+![backend-springboot](./display/backend.png)
+- **Start the Vue Frontend**:
+1.Navigate to the frontend directory:
+```
+cd vue
+``` 
+2.Install dependencies:
+```
+npm install
+``` 
+3. Start the development server:
+```
+npm run serve
+``` 
+Then:
+![frontend-vue](./display/vue.png)
