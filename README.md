@@ -2,7 +2,7 @@
 
 ## Background Overview
 This project is a small-scale online second-hand trading platform for students at the Oakland campus of Northeastern University. It aims to facilitate the transfer of personal idle items within the campus. Students can either open and manage their own stores or act as consumers to purchase second-hand items from others.
-
+![homepage](./display/homepage.png)
 ## Implementation
 The website is based on a multi-merchant structure, allowing different merchants to manage their own data independently. A collaborative filtering recommendation algorithm is integrated for personalized recommendations, enabling tailored suggestions for users. The recommendation process leverages asynchronous multi-threading to efficiently handle data from different users.
 
@@ -22,6 +22,11 @@ The website is based on a multi-merchant structure, allowing different merchants
 - Publish product information
 - Manage orders within their store
 - Manage users and reviews within their store
+
+| Seller Console | Selller : Order Track | Seller : Order Management |
+|-------|-------|-------|
+| ![图片1](./display/seller-console.png) | ![图片2](./display/seller-order.png) | ![图片3](./display/seller_manage.png) |
+
 
 ### User: Student Buyer
 - Register, Login, Personal Dashboard, Change Password
@@ -59,6 +64,18 @@ The recommendation feature uses ExecutorService for thread pooling and CountDown
 - Latch Mechanism: CountDownLatch ensures that all user-product relationship data calculations are completed before executing the recommendation algorithm.
 
 #### 3. Recommendation Algorithm Design
+
+Collaborative Filtering:
+- There are certain collaborative correlations between different users and items. By calculating these correlations, we can identify the one or more items with the 
+highest relevance and recommend them to specific users.
+
+Two Approaches to Collaborative Filtering:
+1. User-Based Recommendation:
+- User A likes products 1, 2, and 3; User B likes products 2, 3, 4, and 5; User C likes products 5, 6, and 7. When User B refreshes their page, the recommendation system identifies a higher correlation between Users A and B. It will recommend items that the other user interacted with, excluding those they both already engaged with.
+2. Item-Based Recommendation:
+- Based on item features such as category, audience, color, etc., when a user interacts with a specific item (e.g., likes, saves, or purchases it), the system analyzes the item's feature data. It then pushes one or more items with the highest feature similarity to the user.
+
+![Recommendation Algorithm Design](./display/algo-recommend.png)
 
 The recommendation feature combines user behavior (e.g., favorites, cart additions, orders, and comments) with a collaborative filtering algorithm (UserCF).
 
@@ -115,7 +132,6 @@ for (Goods goods : allGoods) {
         }
 ```
 
-
 ```
 List<Goods> goods = goodsMapper.selectAll(null);
 for (int i = 0; i < num; i++) {
@@ -146,13 +162,8 @@ return list;
 
 
 
-
-
-
-
-
 ## Requirements
 - **Backend**: Java 17+, Spring Boot
-- **Frontend**: Node.js 16+, Vue
-- **Database**: MySQL, navicat
-- **Tools**: Maven, npm or yarn
+- **Frontend**: Node.js 16+, Vue, Element UI
+- **Database**: MySQL(JDBC)
+- **Tools**: Maven, npm
