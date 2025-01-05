@@ -97,7 +97,7 @@ Two Approaches to Collaborative Filtering:
 2. Item-Based Recommendation:
 - Based on item features such as category, audience, color, etc., when a user interacts with a specific item (e.g., likes, saves, or purchases it), the system analyzes the item's feature data. It then pushes one or more items with the highest feature similarity to the user.
 
-![Recommendation Algorithm Design](./display/algo-recommend.png)
+![Recommendation Algorithm Design](./display/algo.png)
 
 The recommendation feature combines user behavior (e.g., favorites, cart additions, orders, and comments) with a collaborative filtering algorithm (UserCF).
 
