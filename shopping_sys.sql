@@ -403,6 +403,32 @@ CREATE TABLE `user`
   ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
+-- Optimization
+-- ----------------------------
+-- Add indexes to improve query performance on frequently used columns
+CREATE INDEX idx_user_id ON address(user_id); -- Index for accelerating queries filtering by user_id
+CREATE INDEX idx_username ON address(username); -- Index for accelerating queries filtering by username
+
+-- Optimize the data type of the username field to save storage space
+ALTER TABLE address MODIFY username VARCHAR(50) CHARACTER SET utf8mb4;
+-- Adjusted the length of the username field based on expected usage
+
+-- Add a foreign key constraint to ensure data consistency between address and users table
+ALTER TABLE address
+    ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE;
+-- Ensures that when a user is deleted, corresponding address records are also removed
+
+-- Create a composite index to speed up queries involving both id and username
+CREATE INDEX idx_id_username ON address(id, username);
+-- Optimized for queries like SELECT id, username FROM address WHERE user_id = ?
+
+-- Modify the username field to disallow NULL values and set a default value
+ALTER TABLE address MODIFY username VARCHAR(50) NOT NULL DEFAULT '';
+-- Ensures the username field is always populated, improving data integrity
+
+
+
+-- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user`
@@ -413,3 +439,5 @@ VALUES (9, 'sam', '123456', 'sam', 'http://localhost:9090/files/user2.png', 'USE
         'sam@northeastern.edu.com');
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+
