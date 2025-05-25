@@ -115,7 +115,6 @@ export default {
         if (valid) {
           this.$request.put('/updatePassword', this.user).then(res => {
             if (res.code === '200') {
-              // 成功更新
               this.$message.success('Done!')
               this.$router.push('/login')
             } else {

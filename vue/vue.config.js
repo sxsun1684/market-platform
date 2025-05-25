@@ -10,7 +10,16 @@ module.exports = defineConfig({
     indexPath: 'index.html',
 
     devServer: {
-        port: 8080
+        port: 8080,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:9090', // backend Spring Boot address
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': '' // If the backend does not have the `/api` prefix, remove it.
+                }
+            }
+        }
     },
     chainWebpack: config => {
         config.plugin('html')
